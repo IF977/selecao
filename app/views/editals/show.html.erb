@@ -1,0 +1,24 @@
+<fieldset>
+	<p>
+	  <strong>Numero:</strong>
+	  <%= @edital.numero %>
+	</p>
+
+	<p>
+	  <strong>Descricao:</strong>
+	  <%= @edital.descricao %>
+	</p>
+
+	<p>
+	  <strong>Data publicacao:</strong>
+	  <%= @edital.data_publicacao %>
+	</p>
+
+	<p>
+	  <strong>Arquivo:</strong>
+	  <%= @edital.arquivo %>
+	</p>
+</fieldset>
+
+<%= link_to 'Alterar', edit_edital_path(@edital) %> |
+<%= link_to 'Voltar', editals_path %>

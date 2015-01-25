@@ -1,0 +1,9 @@
+<fieldset>
+	<p>
+	  <strong>Descricao:</strong>
+	  <%= @linha_pesquisa.descricao %>
+	</p>
+</fieldset>
+
+<%= link_to 'Alterar', edit_linha_pesquisa_path(@linha_pesquisa) %> |
+<%= link_to 'Voltar', linha_pesquisas_path %>

@@ -1,0 +1,28 @@
+<h1>Listando :: Usuários</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>E-Mail</th>
+      <th>Permissões</th>
+      <th>Ações</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.nome %></td>
+        <td><%= user.email %></td>
+        <td><%= user.user_roles %></td>
+        <td><%= link_to 'Ver', user %> | <%= link_to 'Alterar', edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

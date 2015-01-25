@@ -1,0 +1,25 @@
+<%= simple_form_for(@linha_pesquisa) do |f| %>
+  <% if @linha_pesquisa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@linha_pesquisa.errors.count, "error") %> prohibited this linha_pesquisa from being saved:</h2>
+
+      <ul>
+      <% @linha_pesquisa.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <div class="field">
+      <%= f.label :descricao %><br>
+      <%= f.text_field :descricao, required: true %>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit 'Salvar' %>
+    <%= link_to 'Voltar', linha_pesquisas_path %>
+  </div>
+<% end %>

@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />   
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <title><%= content_for?(:title) ? yield(:title) : "CIn/UFPE" %></title>
+   
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "custom.modernizr" %>
+    
+    <%= csrf_meta_tags %>
+  </head>
+   
+  <body>
+    <!-- Navigation -->
+    <nav class="top-bar" data-topbar role="navigation"> 
+      <ul class="title-area"> 
+        <li class="name"> <h1><a href="/">Home</a></h1> </li> 
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone --> 
+        <li class="toggle-topbar menu-icon"><a href="/"><span>Menu</span></a></li> 
+      </ul> 
+      <section class="top-bar-section"> 
+        <!-- Left Nav Section -->
+        <ul class="left"> 
+          <% if current_user %>
+            <li class="has-dropdown"> <a href="#">Processo Seletivo</a>
+                <ul class="dropdown"> 
+                  <% if can? :manage, @edital%>
+                    <li><%= link_to 'Edital', editals_path %></li> 
+                  <% end %>
+                  <% if can? :manage, @linha_pesquisa %>
+                    <li><%= link_to 'Linhas de Pesquisa', linha_pesquisas_path %></li> 
+                  <% end %>
+                </ul> 
+            </li> 
+            <% if can? :manage, @user %>
+              <li ><%= link_to 'Users', users_path %></li>
+            <% end %>
+          <% end %>
+        </ul> 
+        <!-- Right Nav Section --> 
+        <ul class="right"> 
+          <% if current_user %>        
+            <li class="divider"></li> 
+            <li class="has-dropdown"> <%= link_to current_user.email, '#'%>
+              <ul class="dropdown">
+                <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
+              </ul> 
+            </li> 
+          <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+            <li><%= link_to 'Register', new_user_registration_path %></li>
+          <% end %>
+        </ul>  
+      </section> 
+    </nav>
+    <!-- End of Navigation -->
+    <!-- Conteudo -->
+    <div class="row">
+      <div class="large-12 columns">
+        <!-- Flash messages -->
+        <div class="row">
+        <div class="large-12 columns">
+          <% if flash[:notice] %>
+            <div data-alert class="alert-box success">
+            <a href="#" class="close">&times;</a>
+            <%= flash[:notice] %>
+            </div>
+          <% end %>
+           
+          <% if flash[:alert] %>
+            <div data-alert class="alert-box alert">
+            <a href="#" class="close">&times;</a>
+            <%= flash[:alert] %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+        <!-- End Flash messages -->
+        <!-- Content -->
+        <div class="row">
+          <div class="large-12 columns">
+          <%= yield %>
+          </div>
+        </div>
+        <!-- End Content -->
+      </div>
+    </div>
+    <!-- Conteudo -->
+    <!-- Footer -->
+    <div id="footer">
+      <footer >
+        <div class="small-12 large-6 small-centered columns">          
+          <div class="small-6 large-3 columns"><a href="http://www2.cin.ufpe.br/site/secao.php?s=1&c=1">Sobre o CIn</a></div>
+          <div class="small-6 large-3 columns"><a href="http://twitter.com/CInUFPE">Twitter</a></div>
+          <div class="small-6 large-3 columns"><a href="http://www.facebook.com/CInUFPEOficial">Facebook</a></div>
+          <div class="small-6 large-3 columns"><a href="http://www2.cin.ufpe.br/site/faleConosco.php?s=1&c=110">Fale Conosco</a></div>
+        </div>
+      </footer>
+    </div>
+        <!-- End Footer -->
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>
