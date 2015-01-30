@@ -45,9 +45,6 @@ gem 'simple_form'
 #gem for file uploads
 gem 'carrierwave'
 
-#Handle large seed files
-gem "fast_seeder"
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
