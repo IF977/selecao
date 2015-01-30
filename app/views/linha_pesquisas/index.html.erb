@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listando :: Linhas de Pesquisas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Descricao</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @linha_pesquisas.each do |linha_pesquisa| %>
+      <tr>
+        <td><%= linha_pesquisa.descricao %></td>
+        <td><%= link_to 'Ver', linha_pesquisa %></td>
+        <td><%= link_to 'Alterar', edit_linha_pesquisa_path(linha_pesquisa) %></td>
+        <td><%= link_to 'Remover', linha_pesquisa, method: :delete, data: { confirm: 'Realmente deseja excluir?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Criar Linha de Pesquisa', new_linha_pesquisa_path %>

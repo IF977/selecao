@@ -1,0 +1,14 @@
+<%= simple_form_for(@linha_pesquisa) do |f| %>
+   <%= f.error_notification %>
+
+  <fieldset>
+    <div class="field">
+      <%= f.input :descricao, :label => "Descrição", required: true %>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.button :submit, "Salvar", class: "my-button" %>
+    <%= link_to 'Voltar', linha_pesquisas_path %>
+  </div>
+<% end %>

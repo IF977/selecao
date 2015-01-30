@@ -1,0 +1,33 @@
+<%= simple_form_for(@pessoa) do |f| %>
+  <%= f.error_notification %>
+  
+  <div class="form-inputs">
+    <fieldset>
+      <legend>Dados Pessoais</legend>
+      <%= f.input :nome %>
+      <%= f.input :cpf, label: "CPF" %>
+      <%= f.input :data_nascimento, as: :date %>
+      <%= f.input :naturalidade %>
+      <%= f.input :nacionalidade %>
+      <%= f.input :estado_civil, collection: [ "Solteiro", "Casado", "Divorciado", "Viúvo"], prompt: "Selecione..." %>
+      <%= f.input :grau_formacao, collection: [ "Sem escolaridade", "Ensino fundamental", "Ensino médio", "Ensino superior ", 
+        "Especialização", "Mestrado", "Doutorado"  ], prompt: "Selecione..." %>
+      <fieldset>
+        <legend>Endereço</legend>
+        <%= f.input :logradouro %>
+        <%= f.input :numero, label: "Número" %>
+        <%= f.input :complemento %>
+        <%= f.input :bairro %>
+        <%= f.association :estado, label_method: :nome, prompt: "Selecione", id: 'select_estado' %>
+        <%= f.association :cidade, collection: Cidade.where(estado: :estado), label_method: :nome, prompt: "Selecione", id: 'select_cidade' %>
+        <%= f.input :cep, label: "CEP" %>
+      </fieldset>
+    </fieldset>
+  </div>
+  <br>
+  
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", class: "my-button" %>
+    <%= link_to 'Voltar', "/" %>
+  </div>
+<% end %>

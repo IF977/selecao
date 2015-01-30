@@ -1,0 +1,30 @@
+<fieldset>
+	<p>
+		<strong>E-Mail:</strong>
+	  	<%= @user.email %>
+	</p>
+	<% if @user.roles.length != nil && @user.roles.length > 0 %>
+		<table>
+		  <thead>
+		    <tr>
+		      <th colspan="3">Permissões</th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @user.roles.each do |role| %>
+		      <tr>
+		        <td><%= role.name %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	<% else %> 
+		<p>
+		  <strong>Usuário não possui permissões</strong>
+		</p>
+	<% end %>
+</fieldset>
+
+<%= link_to 'Alterar', edit_user_path(@user) %> |
+<%= link_to 'Voltar', users_path %>

@@ -1,0 +1,31 @@
+<h1>Listando :: Editais</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Numero</th>
+      <th>Descricao</th>
+      <th>Data publicacao</th>
+      <th>Arquivo</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @editals.each do |edital| %>
+      <tr>
+        <td><%= edital.numero %></td>
+        <td><%= edital.descricao %></td>
+        <td><%= edital.data_publicacao %></td>
+        <td><%= edital.arquivo %></td>
+        <td><%= link_to 'Ver', edital %></td>
+        <td><%= link_to 'Alterar', edit_edital_path(edital) %></td>
+        <td><%= link_to 'Remover', edital, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Criar Edital', new_edital_path %>

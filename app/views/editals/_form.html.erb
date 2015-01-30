@@ -1,0 +1,21 @@
+<%= simple_form_for(@edital) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <fieldset>
+      <legend>Dados Edital</legend>
+      <%= f.input :numero, label: "Número" %>
+      <%= f.input :descricao, label: "Descrição" %>
+      <%= f.input :data_publicacao, as: :date, label: "Data de publicação"  %>
+      <div class="field">
+        <%= f.label "Arquivo do edital" %><br>
+        <%= f.file_field :arquivo %>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", class: "my-button" %>
+    <%= link_to 'Voltar', editals_path %>
+  </div>
+<% end %>
