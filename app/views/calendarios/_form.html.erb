@@ -1,0 +1,17 @@
+<%= simple_form_for(@calendario) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <fieldset>
+      <legend>Dados do Calendário</legend>
+      <%= f.association :processo_seletivo, label_method: :descricao, prompt: "Selecione" %>
+      <fieldset>
+      
+    </fieldset>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", class: "my-button" %>
+    <%= link_to 'Voltar', calendarios_path %>
+  </div>
+<% end %>

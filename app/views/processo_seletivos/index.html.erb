@@ -1,0 +1,29 @@
+<h1>Listando :: Processos Seletivos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Descricao</th>
+      <th>Edital</th>
+      <th>Linhas de Pesquisa</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @processo_seletivos.each do |processo_seletivo| %>
+      <tr>
+        <td><%= processo_seletivo.descricao %></td>
+        <td><%= processo_seletivo.edital.descricao %></td>
+        <td><%= processo_seletivo.desc_linhas_pesquisa %></td>
+        <td><%= link_to 'Ver', processo_seletivo %></td>
+        <td><%= link_to 'Alterar', edit_processo_seletivo_path(processo_seletivo) %></td>
+        <td><%= link_to 'Remover', processo_seletivo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Criar Processo Seletivo', new_processo_seletivo_path %>

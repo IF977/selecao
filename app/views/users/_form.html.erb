@@ -12,12 +12,6 @@
   <% end %>
 
   <fieldset>
-    
-    <div class="field">
-      <%= f.label :nome %><br>
-      <%= f.text_field :nome, required: true %>
-    </div>
-
     <div class="field">
       <%= f.label :email %><br>
       <%= f.email_field :email, required: true %>
@@ -29,7 +23,7 @@
     </div>
     
     <div class="actions">
-      <%= f.submit 'Salvar' %>
+      <%= f.button :submit, "Salvar", class: "my-button" %>
       <%= link_to 'Voltar', users_path %>
     </div>
   </fieldset>

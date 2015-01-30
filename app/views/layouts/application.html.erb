@@ -33,6 +33,12 @@
                   <% if can? :manage, @linha_pesquisa %>
                     <li><%= link_to 'Linhas de Pesquisa', linha_pesquisas_path %></li> 
                   <% end %>
+                  <% if can? :manage, @processo_seletivo%>
+                    <li><%= link_to 'Processo Seletivo', processo_seletivos_path %></li> 
+                  <% end %>
+                  <% if can? :manage, @Calendario%>
+                    <li><%= link_to 'Calendário de Eventos', calendarios_path %></li> 
+                  <% end %>
                 </ul> 
             </li> 
             <% if can? :manage, @user %>
@@ -46,7 +52,8 @@
             <li class="divider"></li> 
             <li class="has-dropdown"> <%= link_to current_user.email, '#'%>
               <ul class="dropdown">
-                <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                <li><%= link_to 'Dados Pessoais', "/pessoa/edit/" + current_user.id.to_s %></li>
+                <li><%= link_to 'Minha Conta', edit_user_registration_path %></li>
                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
               </ul> 
             </li> 
@@ -58,50 +65,58 @@
       </section> 
     </nav>
     <!-- End of Navigation -->
+    
+    <!-- Flash messages -->
+    
+      <% if flash[:notice] %>
+        <div data-alert class="alert-box success">
+        <a href="#" class="close">&times;</a>
+        <%= flash[:notice] %>
+        </div>
+      <% end %>
+       
+      <% if flash[:alert] %>
+        <div data-alert class="alert-box alert">
+        <a href="#" class="close">&times;</a>
+        <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <% if flash[:messages] %>
+        <div data-alert class="alert-box message">
+        <a href="#" class="close">&times;</a>
+        <%= flash[:messages] %>
+        </div>
+      <% end %>
+     
+    <!-- End Flash messages -->
+
     <!-- Conteudo -->
     <div class="row">
-      <div class="large-12 columns">
-        <!-- Flash messages -->
-        <div class="row">
-        <div class="large-12 columns">
-          <% if flash[:notice] %>
-            <div data-alert class="alert-box success">
-            <a href="#" class="close">&times;</a>
-            <%= flash[:notice] %>
-            </div>
-          <% end %>
-           
-          <% if flash[:alert] %>
-            <div data-alert class="alert-box alert">
-            <a href="#" class="close">&times;</a>
-            <%= flash[:alert] %>
-            </div>
-          <% end %>
-          </div>
-        </div>
-        <!-- End Flash messages -->
+      <div class="small-11 medium-10 large-9 columns">
         <!-- Content -->
-        <div class="row">
-          <div class="large-12 columns">
           <%= yield %>
-          </div>
-        </div>
         <!-- End Content -->
       </div>
     </div>
     <!-- Conteudo -->
+
     <!-- Footer -->
+    <br><br><br><br>
     <div id="footer">
       <footer >
-        <div class="small-12 large-6 small-centered columns">          
-          <div class="small-6 large-3 columns"><a href="http://www2.cin.ufpe.br/site/secao.php?s=1&c=1">Sobre o CIn</a></div>
-          <div class="small-6 large-3 columns"><a href="http://twitter.com/CInUFPE">Twitter</a></div>
-          <div class="small-6 large-3 columns"><a href="http://www.facebook.com/CInUFPEOficial">Facebook</a></div>
-          <div class="small-6 large-3 columns"><a href="http://www2.cin.ufpe.br/site/faleConosco.php?s=1&c=110">Fale Conosco</a></div>
+        <div class="small-12  small-centered columns">          
+          <div>
+            <a href="http://www2.cin.ufpe.br/site/secao.php?s=1&c=1">Sobre o CIn</a> | 
+            <a href="http://twitter.com/CInUFPE">Twitter</a> | 
+            <a href="http://www.facebook.com/CInUFPEOficial">Facebook</a> | 
+            <a href="http://www2.cin.ufpe.br/site/faleConosco.php?s=1&c=110">Fale Conosco</a>
+          </div>
+          
         </div>
       </footer>
     </div>
-        <!-- End Footer -->
+    <!-- End Footer -->
     <%= javascript_include_tag "application" %>
   </body>
 </html>

@@ -1,0 +1,21 @@
+<fieldset>
+	<legend>Dados do Processo Seletivo</legend>
+	
+	<p>
+	  <strong>Descrição:</strong>
+	  <%= @processo_seletivo.descricao %>
+	</p>
+
+	<p>
+	  <strong>Edital:</strong>
+	  <%= @edital.descricao %>
+	</p>
+
+	<p>
+	  <strong>Linhas de pesquisa:</strong>
+	  <%= @processo_seletivo.desc_linhas_pesquisa %>
+	</p>
+</fieldset>
+
+<%= link_to 'Alterar', edit_processo_seletivo_path(@processo_seletivo) %> |
+<%= link_to 'Voltar', processo_seletivos_path %>

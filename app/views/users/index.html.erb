@@ -3,10 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Nome</th>
       <th>E-Mail</th>
       <th>Permissões</th>
-      <th>Ações</th>
+      <th colspan="3">Ações</th>
     </tr>
 
   </thead>
@@ -14,10 +13,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.nome %></td>
         <td><%= user.email %></td>
-        <td><%= user.user_roles %></td>
+        <td><%= user.my_roles %></td>
         <td><%= link_to 'Ver', user %> | <%= link_to 'Alterar', edit_user_path(user) %></td>
+        <td><%= link_to 'Remover', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

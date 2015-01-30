@@ -1,4 +1,5 @@
 class EditalsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_edital, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -43,5 +44,7 @@ class EditalsController < ApplicationController
 
     def edital_params
       params.require(:edital).permit(:numero, :descricao, :data_publicacao, :arquivo)
+
+
     end
 end

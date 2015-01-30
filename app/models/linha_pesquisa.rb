@@ -1,5 +1,6 @@
 class LinhaPesquisa < ActiveRecord::Base
-  resourcify
+	resourcify
 
-  belongs_to :edital
+	validates_presence_of :descricao
+
 end

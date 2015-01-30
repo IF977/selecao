@@ -1,0 +1,21 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <fieldset>
+    <div class="field">
+      <%= f.input :email, required: true, autofocus: true %>
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
+      <%= f.input :password_confirmation, required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Permissões" %><br>
+      <%= f.association :roles, :as => :check_boxes %>
+    </div>
+    
+    <div class="actions">
+      <%= f.button :submit, "Salvar", class: "my-button" %>
+      <%= link_to 'Voltar', users_path %>
+    </div>
+  </fieldset>
+<% end %>

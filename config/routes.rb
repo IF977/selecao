@@ -1,15 +1,22 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  #devise_for :users, :controllers => { registrations: 'registrations' }
+  get "/pessoa/edit/:id", :to => "pessoas#edit"
 
-  scope "/admin" do
-    resources :users, :only =>[:index, :edit, :update, :show]
-  end
+  resources :processo_seletivos
 
+  resources :calendarios
+
+  resources :pessoas
+  
   resources :editals
 
   resources :linha_pesquisas
+
+  devise_for :users
+  
+  scope "/admin" do
+    resources :users#, :only =>[:index, :edit, :update, :show]
+  end
 
   get 'system/index'
 
@@ -21,7 +28,7 @@ Rails.application.routes.draw do
     
   root :to => redirect('system/index')
 
-  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

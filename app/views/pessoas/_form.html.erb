@@ -1,0 +1,32 @@
+<%= simple_form_for(@pessoa) do |f| %>
+  <%= f.error_notification %>
+  
+  <div class="form-inputs">
+    <fieldset>
+      <legend>Dados Pessoais</legend>
+      <%= f.input :nome %>
+      <%= f.input :cpf, label: "CPF" %>
+      <%= f.input :data_nascimento, as: :date %>
+      <%= f.input :naturalidade %>
+      <%= f.input :nacionalidade %>
+      <%= f.input :estado_civil %>
+      <%= f.input :grau_formacao %>
+      <fieldset>
+        <legend>Endereço</legend>
+        <%= f.input :logradouro %>
+        <%= f.input :numero, label: "Número" %>
+        <%= f.input :complemento %>
+        <%= f.input :bairro %>
+        <%= f.input :cidade %>
+        <%= f.input :estado %>
+        <%= f.input :cep, label: "CEP" %>
+      </fieldset>
+    </fieldset>
+  </div>
+  <br>
+  
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", class: "my-button" %>
+    <%= link_to 'Voltar', "/" %>
+  </div>
+<% end %>

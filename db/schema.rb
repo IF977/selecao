@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125222201) do
+ActiveRecord::Schema.define(version: 20150129202820) do
+
+  create_table "calendarios", force: :cascade do |t|
+    t.integer  "processo_seletivo_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "calendarios", ["processo_seletivo_id"], name: "index_calendarios_on_processo_seletivo_id"
 
   create_table "editals", force: :cascade do |t|
     t.string   "numero"
@@ -22,14 +30,70 @@ ActiveRecord::Schema.define(version: 20150125222201) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "linha_pesquisas", force: :cascade do |t|
+  create_table "eventos", force: :cascade do |t|
     t.string   "descricao"
-    t.integer  "edital_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "linha_pesquisas", ["edital_id"], name: "index_linha_pesquisas_on_edital_id"
+  create_table "eventos_calendarios", force: :cascade do |t|
+    t.date     "data_inicial"
+    t.date     "data_final"
+    t.string   "observacao"
+    t.integer  "evento_id"
+    t.integer  "calendario_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "eventos_calendarios", ["calendario_id"], name: "index_eventos_calendarios_on_calendario_id"
+  add_index "eventos_calendarios", ["evento_id"], name: "index_eventos_calendarios_on_evento_id"
+
+  create_table "linha_pesquisas", force: :cascade do |t|
+    t.string   "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pessoas", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "cpf"
+    t.date     "data_nascimento"
+    t.string   "naturalidade"
+    t.string   "nacionalidade"
+    t.string   "estado_civil"
+    t.string   "grau_formacao"
+    t.string   "logradouro"
+    t.string   "numero"
+    t.string   "complemento"
+    t.string   "bairro"
+    t.string   "cidade"
+    t.string   "estado"
+    t.string   "cep"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "pessoas", ["user_id"], name: "index_pessoas_on_user_id"
+
+  create_table "processo_seletivos", force: :cascade do |t|
+    t.string   "descricao"
+    t.integer  "edital_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "calendarios_id"
+  end
+
+  add_index "processo_seletivos", ["calendarios_id"], name: "index_processo_seletivos_on_calendarios_id"
+  add_index "processo_seletivos", ["edital_id"], name: "index_processo_seletivos_on_edital_id"
+
+  create_table "processo_seletivos_linha_pesquisas", id: false, force: :cascade do |t|
+    t.integer "processo_seletivo_id"
+    t.integer "linha_pesquisa_id"
+  end
+
+  add_index "processo_seletivos_linha_pesquisas", ["processo_seletivo_id", "linha_pesquisa_id"], name: "index_processo_seletivos_linha_pesquisas", unique: true
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -55,7 +119,6 @@ ActiveRecord::Schema.define(version: 20150125222201) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "nome"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

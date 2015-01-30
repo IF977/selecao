@@ -8,6 +8,26 @@
 
 #Criando papeis de usuario
 Role.create(:id => 1, :name => "Admin")
-Role.create(:id => 2, :name => "Gestor")
-Role.create(:id => 3, :name => "Avaliador")
-Role.create(:id => 4, :name => "Candidato")
+Role.create(:id => 2, :name => "Avaliador")
+Role.create(:id => 3, :name => "Gestor")
+
+#Criando usuario incial do sistema, com senha '12345678'
+user=User.create(email: 'admin@admin.com', :password => 12345678, :password_confirmation => 12345678)
+
+#Adicionando Role 'Admin' ao usuario inicial
+user.add_role :Admin
+user.save!
+
+
+#Inserindo os eventos do edital 2015
+ Evento.create(:descricao => 'Período de inscrições')
+ Evento.create(:descricao => 'Período de avaliação da etapa 1')
+ Evento.create(:descricao => 'Divulgação do resultado da etapa 1')
+ Evento.create(:descricao => 'Período para recursos da etapa 1')
+ Evento.create(:descricao => 'Período de avaliação da etapa 2')
+ Evento.create(:descricao => 'Divulgação do resultado da etapa 2')
+ Evento.create(:descricao => 'Período para recursos da etapa 2')
+ Evento.create(:descricao => 'Divulgação do resultado final')
+ Evento.create(:descricao => 'Período para recursos do resultado final')
+ Evento.create(:descricao => 'Período para confirmação da intenção de cursar')
+ Evento.create(:descricao => 'Período de matrículas e data de início das aulas')

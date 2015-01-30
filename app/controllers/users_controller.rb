@@ -1,47 +1,37 @@
-
-
 class UsersController < ApplicationController
 	before_filter :authenticate_user!
-	
+
 	def index
-		authorize! :index, @user, :message => 'Not authorized as an administrator.'
+		authorize! :index, @user, :message => 'Permissão negada!.'
 		@users = User.all
 	end
 	
 	def show
-		authorize! :read, @user, :message => 'Not authorized as an administrator.'
+		authorize! :read, @user, :message => 'Permissão negada!.'
 		@user = User.find(params[:id])
 	end
 	
 	def edit
-		authorize! :update, @user, :message => 'Not authorized as an administrator.'
+		authorize! :update, @user, :message => 'Permissão negada!.'
 		@user = User.find(params[:id])
 	end
-	
+
 	def update
-		authorize! :update, @user, :message => 'Not authorized as an administrator.'
+		authorize! :update, @user, :message => 'Permissão negada!.'
 		user = User.find(params[:id])
-		print("USER: " + user.to_s)
-		print("USER_PARAMS: " + user_params.to_s)
 		if user.update(user_params)
-			redirect_to users_path, :notice => "User updated."
+			redirect_to users_path, :notice => "Usuário alterado."
 		else
-			redirect_to users_path, :alert => "Unable to update user."
+			redirect_to users_path, :alert => "Não foi possível alterar o usuário."
 		end
 	end
-
-	
 
 	def destroy
-		authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
-		user = User.find(params[:id])
-		unless user == current_user
-			user.destroy
-			redirect_to users_path, :notice => "User deleted."
-		else
-			redirect_to users_path, :notice => "Can't delete yourself."
-		end
-	end
+		authorize! :destroy, @user, :message => 'Permissão negada!.'
+	    user = User.find(params[:id])
+	    user.destroy
+	    redirect_to users_path, :notice => "Usuário removido."
+	  end
 
 	private
 
@@ -50,6 +40,6 @@ class UsersController < ApplicationController
 	    end
 
 	    def user_params
-	      params.require(:user).permit(:nome, :email, {:role_ids => []})
+	      params.require(:user).permit(:email, {:role_ids => []})
 	    end
 end

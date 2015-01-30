@@ -1,0 +1,20 @@
+<%= simple_form_for(@processo_seletivo) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <fieldset>
+      <legend>Dados Processo Seletivo</legend>
+      <%= f.input :descricao, label: "Descrição" %>
+      <%= f.association :edital, label_method: :descricao_edial, prompt: "Selecione" %>
+      <fieldset>
+      <legend>Linhas de Pesquisa</legend>
+        <%= f.collection_check_boxes :linha_pesquisa_ids, LinhaPesquisa.all, :id, :descricao %> 
+      </fieldset>
+    </fieldset>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", class: "my-button" %>
+    <%= link_to 'Voltar', processo_seletivos_path %>
+  </div>
+<% end %>

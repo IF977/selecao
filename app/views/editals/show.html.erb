@@ -1,11 +1,12 @@
 <fieldset>
+	<legend>Dados do Edital</legend>
 	<p>
-	  <strong>Numero:</strong>
+	  <strong>Número:</strong>
 	  <%= @edital.numero %>
 	</p>
 
 	<p>
-	  <strong>Descricao:</strong>
+	  <strong>Descrição:</strong>
 	  <%= @edital.descricao %>
 	</p>
 
@@ -18,6 +19,7 @@
 	  <strong>Arquivo:</strong>
 	  <%= @edital.arquivo %>
 	</p>
+
 </fieldset>
 
 <%= link_to 'Alterar', edit_edital_path(@edital) %> |

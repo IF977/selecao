@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  #TODO - check_authorization
+
   protected
 
   def configure_permitted_parameters

@@ -37,12 +37,13 @@ class Ability
             #All the "Gestor" stuff go here
             can :manage, :edital
             can :manage, :linha_pesquisa
-        end
-        if user.has_role? :Avaliador
-            #All the "Avaliador" stuff go here
-        end
-        if user.has_role? :Candidato
-            #All the "Candidato" stuff go here
+        else
+            if user.has_role? :Avaliador
+                #All the "Avaliador" stuff go here
+            else
+            #Aqui vão todas as ações permitidas a usuários logados, mas sem papel, ou seja, candidatos
+            can :update, Pessoa, :user_id => user.id
+            end
         end
       #can :read, :all
     end
