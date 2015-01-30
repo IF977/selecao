@@ -6,5 +6,7 @@ class Pessoa < ActiveRecord::Base
     validates :cpf, uniqueness: true
 
   	belongs_to :user
+  	belongs_to :estado
+  	belongs_to :cidade
   	
 end

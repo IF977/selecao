@@ -15,7 +15,8 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.my_roles %></td>
-        <td><%= link_to 'Ver', user %> | <%= link_to 'Alterar', edit_user_path(user) %></td>
+        <td><%= link_to 'Ver', user %> </td> 
+        <td><%= link_to 'Alterar', edit_user_path(user) %></td>
         <td><%= link_to 'Remover', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

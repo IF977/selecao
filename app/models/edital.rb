@@ -7,8 +7,4 @@ class Edital < ActiveRecord::Base
 
 	mount_uploader :arquivo, PictureUploader
 
-	def descricao_edial
-		self.descricao
-	end
-
 end

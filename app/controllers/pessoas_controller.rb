@@ -10,7 +10,6 @@ class PessoasController < ApplicationController
 
   def show
     redirect_to action: 'edit'
-
   end
 
   def edit
@@ -62,6 +61,6 @@ class PessoasController < ApplicationController
 
     def pessoa_params
       params.require(:pessoa).permit(:nome, :cpf, :data_nascimento, :naturalidade, :nacionalidade, :estado_civil, :grau_formacao,  
-        :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep)
+        :logradouro, :numero, :complemento, :bairro, :estado_id, :cidade_id, :cep)
     end
 end

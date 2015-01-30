@@ -12,7 +12,7 @@ Role.create(:id => 2, :name => "Avaliador")
 Role.create(:id => 3, :name => "Gestor")
 
 #Criando usuario incial do sistema, com senha '12345678'
-user=User.create(email: 'admin@admin.com', :password => 12345678, :password_confirmation => 12345678)
+user = User.create(email: 'admin@admin.com', :password => 12345678, :password_confirmation => 12345678)
 
 #Adicionando Role 'Admin' ao usuario inicial
 user.add_role :Admin
@@ -31,3 +31,5 @@ user.save!
  Evento.create(:descricao => 'Período para recursos do resultado final')
  Evento.create(:descricao => 'Período para confirmação da intenção de cursar')
  Evento.create(:descricao => 'Período de matrículas e data de início das aulas')
+
+

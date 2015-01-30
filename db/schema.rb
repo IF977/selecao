@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129202820) do
+ActiveRecord::Schema.define(version: 20150130140656) do
 
   create_table "calendarios", force: :cascade do |t|
     t.integer  "processo_seletivo_id"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20150129202820) do
 
   add_index "calendarios", ["processo_seletivo_id"], name: "index_calendarios_on_processo_seletivo_id"
 
+  create_table "cidades", force: :cascade do |t|
+    t.string   "nome"
+    t.integer  "estado_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cidades", ["estado_id"], name: "index_cidades_on_estado_id"
+
   create_table "editals", force: :cascade do |t|
     t.string   "numero"
     t.string   "descricao"
@@ -28,6 +37,13 @@ ActiveRecord::Schema.define(version: 20150129202820) do
     t.binary   "arquivo"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "estados", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "sigla"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "eventos", force: :cascade do |t|
@@ -68,13 +84,14 @@ ActiveRecord::Schema.define(version: 20150129202820) do
     t.string   "complemento"
     t.string   "bairro"
     t.string   "cidade"
-    t.string   "estado"
+    t.integer  "estado_id"
     t.string   "cep"
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "pessoas", ["estado_id"], name: "index_pessoas_on_estado_id"
   add_index "pessoas", ["user_id"], name: "index_pessoas_on_user_id"
 
   create_table "processo_seletivos", force: :cascade do |t|

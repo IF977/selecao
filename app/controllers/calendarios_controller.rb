@@ -15,6 +15,11 @@ class CalendariosController < ApplicationController
 
   def new
     @calendario = Calendario.new
+    Evento.all.each do |e|
+      ec = EventosCalendario.new
+      ec.evento = e
+      ec.calendario = @calendario
+    end
     respond_with(@calendario)
   end
 
@@ -36,6 +41,8 @@ class CalendariosController < ApplicationController
     @calendario.destroy
     respond_with(@calendario)
   end
+
+
 
   private
     def set_calendario

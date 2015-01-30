@@ -13,12 +13,13 @@ class CreatePessoas < ActiveRecord::Migration
       t.string :complemento
       t.string :bairro
       t.string :cidade
-      t.string :estado
+      t.references :estado, index: true
       t.string :cep
       t.references :user, index: true
 
       t.timestamps null: false
     end
     add_foreign_key :pessoas, :users
+    add_foreign_key :pessoas, :estados
   end
 end

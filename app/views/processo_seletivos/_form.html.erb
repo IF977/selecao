@@ -5,7 +5,7 @@
     <fieldset>
       <legend>Dados Processo Seletivo</legend>
       <%= f.input :descricao, label: "Descrição" %>
-      <%= f.association :edital, label_method: :descricao_edial, prompt: "Selecione" %>
+      <%= f.association :edital, label_method: :descricao, prompt: "Selecione" %>
       <fieldset>
       <legend>Linhas de Pesquisa</legend>
         <%= f.collection_check_boxes :linha_pesquisa_ids, LinhaPesquisa.all, :id, :descricao %> 

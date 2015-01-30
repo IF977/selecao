@@ -9,16 +9,17 @@
       <%= f.input :data_nascimento, as: :date %>
       <%= f.input :naturalidade %>
       <%= f.input :nacionalidade %>
-      <%= f.input :estado_civil %>
-      <%= f.input :grau_formacao %>
+      <%= f.input :estado_civil, collection: [ "Solteiro", "Casado", "Divorciado", "Viúvo"], prompt: "Selecione..." %>
+      <%= f.input :grau_formacao, collection: [ "Sem escolaridade", "Ensino fundamental", "Ensino médio", "Ensino superior ", 
+        "Especialização", "Mestrado", "Doutorado"  ], prompt: "Selecione..." %>
       <fieldset>
         <legend>Endereço</legend>
         <%= f.input :logradouro %>
         <%= f.input :numero, label: "Número" %>
         <%= f.input :complemento %>
         <%= f.input :bairro %>
-        <%= f.input :cidade %>
-        <%= f.input :estado %>
+        <%= f.association :estado, label_method: :nome, prompt: "Selecione", id: 'select_estado' %>
+        <%= f.association :cidade, collection: Cidade.where(estado: :estado), label_method: :nome, prompt: "Selecione", id: 'select_cidade' %>
         <%= f.input :cep, label: "CEP" %>
       </fieldset>
     </fieldset>
