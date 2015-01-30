@@ -9,7 +9,6 @@
 #Criando papeis de usuario
 Role.create(:id => 1, :name => "Admin")
 Role.create(:id => 2, :name => "Avaliador")
-Role.create(:id => 3, :name => "Gestor")
 
 #Criando usuario incial do sistema, com senha '12345678'
 user = User.create(email: 'admin@admin.com', :password => 12345678, :password_confirmation => 12345678)
