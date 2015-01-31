@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130140656) do
+ActiveRecord::Schema.define(version: 20150131000828) do
 
   create_table "calendarios", force: :cascade do |t|
     t.integer  "processo_seletivo_id"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20150130140656) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "calendarios_id"
+    t.integer  "calendario_id"
   end
 
   add_index "processo_seletivos", ["calendarios_id"], name: "index_processo_seletivos_on_calendarios_id"
