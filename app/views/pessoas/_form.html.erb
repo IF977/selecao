@@ -19,7 +19,7 @@
         <%= f.input :complemento %>
         <%= f.input :bairro %>
         <%= f.association :estado, label_method: :nome, prompt: "Selecione", id: 'select_estado' %>
-        <%= f.association :cidade, collection: Cidade.where(estado: :estado), label_method: :nome, prompt: "Selecione", id: 'select_cidade' %>
+        <%= f.input :cidade %>
         <%= f.input :cep, label: "CEP" %>
       </fieldset>
     </fieldset>
