@@ -5,7 +5,7 @@ class CreateCalendarios < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :calendarios, :processos_seletivo
+    add_foreign_key :calendarios, :processo_seletivos
   end
 
 end
