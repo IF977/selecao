@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131000828) do
-
-  create_table "calendarios", force: :cascade do |t|
-    t.integer  "processo_seletivo_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "calendarios", ["processo_seletivo_id"], name: "index_calendarios_on_processo_seletivo_id"
+ActiveRecord::Schema.define(version: 20150130140914) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
@@ -29,6 +21,19 @@ ActiveRecord::Schema.define(version: 20150131000828) do
   end
 
   add_index "cidades", ["estado_id"], name: "index_cidades_on_estado_id"
+
+  create_table "detalhes_eventos", force: :cascade do |t|
+    t.date     "data_inicial"
+    t.date     "data_final"
+    t.string   "observacao"
+    t.integer  "evento_id"
+    t.integer  "processo_seletivo_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "detalhes_eventos", ["evento_id"], name: "index_detalhes_eventos_on_evento_id"
+  add_index "detalhes_eventos", ["processo_seletivo_id"], name: "index_detalhes_eventos_on_processo_seletivo_id"
 
   create_table "editals", force: :cascade do |t|
     t.string   "numero"
@@ -51,19 +56,6 @@ ActiveRecord::Schema.define(version: 20150131000828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "eventos_calendarios", force: :cascade do |t|
-    t.date     "data_inicial"
-    t.date     "data_final"
-    t.string   "observacao"
-    t.integer  "evento_id"
-    t.integer  "calendario_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "eventos_calendarios", ["calendario_id"], name: "index_eventos_calendarios_on_calendario_id"
-  add_index "eventos_calendarios", ["evento_id"], name: "index_eventos_calendarios_on_evento_id"
 
   create_table "linha_pesquisas", force: :cascade do |t|
     t.string   "descricao"
@@ -97,16 +89,14 @@ ActiveRecord::Schema.define(version: 20150131000828) do
   create_table "processo_seletivos", force: :cascade do |t|
     t.string   "descricao"
     t.integer  "edital_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "calendarios_id"
-    t.integer  "calendario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "processo_seletivos", ["calendarios_id"], name: "index_processo_seletivos_on_calendarios_id"
   add_index "processo_seletivos", ["edital_id"], name: "index_processo_seletivos_on_edital_id"
 
   create_table "processo_seletivos_linha_pesquisas", id: false, force: :cascade do |t|
+    t.integer "vagas"
     t.integer "processo_seletivo_id"
     t.integer "linha_pesquisa_id"
   end

@@ -45,6 +45,9 @@ gem 'simple_form'
 #gem for file uploads
 gem 'carrierwave'
 
+#cocoon
+gem 'cocoon'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

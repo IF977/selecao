@@ -17,7 +17,7 @@ class ProcessoSeletivosController < ApplicationController
 
   def new
     @processo_seletivo = ProcessoSeletivo.new
-    @linha_pesquisas
+    @processos_seletivos_linha_pesquisa = @processo_seletivo.processo_seletivos_linha_pesquisas.build
     respond_with(@processo_seletivo)
   end
 
@@ -40,6 +40,10 @@ class ProcessoSeletivosController < ApplicationController
     respond_with(@processo_seletivo)
   end
 
+  def add_linha_pesquisa
+    @processo_seletivo.processo_seletivos_linha_pesquisas
+  end
+
   private
     def set_processo_seletivo
       @processo_seletivo = ProcessoSeletivo.find(params[:id])
@@ -47,6 +51,9 @@ class ProcessoSeletivosController < ApplicationController
 
     def processo_seletivo_params
       params.require(:processo_seletivo).permit(:numero, :descricao, :data_publicacao, :arquivo, 
-        :edital_id, {:linha_pesquisa_ids => []})
+        :edital_id, {:linha_pesquisa_ids => []}, {:detalhes_evento_ids => []}, 
+        processo_seletivos_linha_pesquisas_attributes: [:id, :vagas, :linha_pesquisa_id],
+        detalhes_evento_attributes: [:id, :data_inicial, :data_final, :observacao, 
+          :evento_id, :processo_seletivo_id])
     end
 end

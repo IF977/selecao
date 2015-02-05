@@ -1,6 +1,8 @@
 class CreateProcessoSeletivosLinhaPesquisas < ActiveRecord::Migration
   def change
     create_table :processo_seletivos_linha_pesquisas, :id => false do |t|
+      t.integer :vagas
+      
       t.references :processo_seletivo
       t.references :linha_pesquisa
     end

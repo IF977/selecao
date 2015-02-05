@@ -6,10 +6,16 @@
       <legend>Dados Processo Seletivo</legend>
       <%= f.input :descricao, label: "Descrição" %>
       <%= f.association :edital, label_method: :descricao, prompt: "Selecione" %>
-      <fieldset>
-      <legend>Linhas de Pesquisa</legend>
-        <%= f.collection_check_boxes :linha_pesquisa_ids, LinhaPesquisa.all, :id, :descricao %> 
-      </fieldset>
+      
+      <%= f.simple_fields_for :processo_seletivos_linha_pesquisas do |builder| %>
+        <%= render "processo_seletivos_linha_pesquisas_fields", :f => builder %>
+      <% end %>
+      <div class="form-actions">
+        <%= link_to_add_association 'add item', f, 
+          :processo_seletivos_linha_pesquisas, :class => "my-button", :partial => 'processo_seletivos_linha_pesquisas_fields' %>
+          <%= f.submit %>
+      </div>
+      
     </fieldset>
   </div>
 
