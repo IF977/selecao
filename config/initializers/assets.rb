@@ -11,3 +11,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 Rails.application.config.assets.precompile += %w( custom.modernizr.js )
+Rails.application.config.assets.precompile += %w( jquery.datetimepicker.css )
+Rails.application.config.assets.precompile += %w( jquery.datetimepicker.js )
