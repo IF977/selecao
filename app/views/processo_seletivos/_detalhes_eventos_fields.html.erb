@@ -1,0 +1,10 @@
+<fieldset>
+	<%= f.fields_for :evento do |e| %>
+		
+		<%= e.input :descricao, label: false, disabled: true, input_html: { style: "border: 0px; background-color: #ffffff; font-weight: bold; input:focus{outline:none;}"} %>
+    <% end %>
+    <%= f.association :evento, as: :hidden %>
+	<%= f.input :data_inicial, class: "datetimepicker" %>
+	<%= f.input :data_final, class: "datetimepicker" %>
+	<%= f.input :observacao %>
+</fieldset>

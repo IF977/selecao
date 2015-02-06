@@ -10,6 +10,8 @@ class ProcessoSeletivo < ActiveRecord::Base
 
   accepts_nested_attributes_for :processo_seletivos_linha_pesquisas
 
+  accepts_nested_attributes_for :detalhes_eventos
+
   validates_presence_of :descricao, :edital
 
   def desc_linhas_pesquisa
