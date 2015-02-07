@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  linha_pesquisa_id: 
+  processo_seletivo_id: 
+
+two:
+  user: 
+  linha_pesquisa_id: 
+  processo_seletivo_id: 
