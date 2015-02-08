@@ -1,4 +1,4 @@
 class Inscricao < ActiveRecord::Base
-  belongs_to :linha_pesquisa
-  belongs_to :processo_seletivo
+  belongs_to :users
+  belongs_to :processo_seletivos_linha_pesquisa
 end

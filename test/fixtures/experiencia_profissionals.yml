@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tempo_chefia: 1.5
+  tempo_nivel_superior: 1.5
+  tempo_nivel_medio: 1.5
+  tempo_sem_vinculo: 1.5
+  tempo_estagio: 1.5
+  inscricao_id: 
+
+two:
+  tempo_chefia: 1.5
+  tempo_nivel_superior: 1.5
+  tempo_nivel_medio: 1.5
+  tempo_sem_vinculo: 1.5
+  tempo_estagio: 1.5
+  inscricao_id: 

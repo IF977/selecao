@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130140914) do
+ActiveRecord::Schema.define(version: 20150207022423) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
@@ -85,6 +85,20 @@ ActiveRecord::Schema.define(version: 20150130140914) do
 
   add_index "pessoas", ["estado_id"], name: "index_pessoas_on_estado_id"
   add_index "pessoas", ["user_id"], name: "index_pessoas_on_user_id"
+
+  create_table "pre_projetos", force: :cascade do |t|
+    t.integer  "inscricao_id"
+    t.float    "aderencia"
+    t.float    "alinhamento"
+    t.float    "contextualizacao"
+    t.float    "consistencia"
+    t.float    "autonomia_intelectual"
+    t.float    "nota_final"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "pre_projetos", ["inscricao_id"], name: "index_pre_projetos_on_inscricao_id"
 
   create_table "processo_seletivos", force: :cascade do |t|
     t.string   "descricao"

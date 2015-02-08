@@ -1,11 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: 
-  linha_pesquisa_id: 
-  processo_seletivo_id: 
+  media_graduacao: 1.5
+  carga_horaria_graduacao: 1
+  tem_pos_graduacao: false
+  graduacao_exterior: false
+  media_mestrado: 1.5
+  tempo_curso_mestrado: 1
+  conceito_capes: MyString
+  users_id: 
+  processo_seletivos_linha_pesquisa_id: 
 
 two:
-  user: 
-  linha_pesquisa_id: 
-  processo_seletivo_id: 
+  media_graduacao: 1.5
+  carga_horaria_graduacao: 1
+  tem_pos_graduacao: false
+  graduacao_exterior: false
+  media_mestrado: 1.5
+  tempo_curso_mestrado: 1
+  conceito_capes: MyString
+  users_id: 
+  processo_seletivos_linha_pesquisa_id: 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tempo_terceiro_grau: 1.5
+  tempo_monitoria: 1.5
+  inscricao_id: 
+
+two:
+  tempo_terceiro_grau: 1.5
+  tempo_monitoria: 1.5
+  inscricao_id: 
