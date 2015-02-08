@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  #TODO - check_authorization
+  check_authorization :unless => :devise_controller?
+
+  #Se o usuário tentar acessar uma página para a qual não tem acesso, receberá um alerta 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: 'Você não está autorizado a acessar esta página.'
+  end
 
   protected
 
