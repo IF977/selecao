@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Media graduacao:</strong>
+  <%= @inscricao.media_graduacao %>
+</p>
+
+<p>
+  <strong>Carga horaria graduacao:</strong>
+  <%= @inscricao.carga_horaria_graduacao %>
+</p>
+
+<p>
+  <strong>Tem pos graduacao:</strong>
+  <%= @inscricao.tem_pos_graduacao %>
+</p>
+
+<p>
+  <strong>Graduacao exterior:</strong>
+  <%= @inscricao.graduacao_exterior %>
+</p>
+
+<p>
+  <strong>Media mestrado:</strong>
+  <%= @inscricao.media_mestrado %>
+</p>
+
+<p>
+  <strong>Tempo curso mestrado:</strong>
+  <%= @inscricao.tempo_curso_mestrado %>
+</p>
+
+<p>
+  <strong>Conceito capes:</strong>
+  <%= @inscricao.conceito_capes %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= @inscricao.users %>
+</p>
+
+<p>
+  <strong>Processo seletivos linha pesquisa:</strong>
+  <%= @inscricao.processo_seletivos_linha_pesquisa %>
+</p>
+
+<%= link_to 'Edit', edit_inscricao_path(@inscricao) %> |
+<%= link_to 'Back', inscricaos_path %>

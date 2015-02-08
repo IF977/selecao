@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :inscricaos
+
   get "/pessoa/edit/:id", :to => "pessoas#edit"
 
   resources :processo_seletivos
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   resources :editals
 
   resources :linha_pesquisas
+
+  resources :inscricaos
 
   devise_for :users
   

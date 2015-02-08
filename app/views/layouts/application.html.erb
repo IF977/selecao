@@ -36,6 +36,9 @@
                   <% if can? :manage, @processo_seletivo%>
                     <li><%= link_to 'Processo Seletivo', processo_seletivos_path %></li> 
                   <% end %>
+                  <%# if can? :manage, @inscricao%>
+                    <li><%= link_to 'Incricao', inscricaos_path %></li> 
+                  <%# end %>                  
                 </ul> 
             </li> 
             <% if can? :manage, @user %>

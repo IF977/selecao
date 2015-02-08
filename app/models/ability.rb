@@ -43,9 +43,16 @@ class Ability
             else
             #Aqui vão todas as ações permitidas a usuários logados, mas sem papel, ou seja, candidatos
             can :update, Pessoa, :user_id => user.id
+            can :manage, Inscricao, :user_id => user.id
+            can :new, :inscricaos
+            can :mange, ExperienciaPdi
+            can :mange, ExperienciaDocencia
+            can :mange, ExperienciaProfissional
+            can :mange, ProducaoCientifica
             end
         end
       #can :read, :all
     end
+
   end
 end

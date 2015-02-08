@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207022423) do
+ActiveRecord::Schema.define(version: 20150208155627) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
@@ -56,6 +56,56 @@ ActiveRecord::Schema.define(version: 20150207022423) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "experiencia_docencia", force: :cascade do |t|
+    t.float    "tempo_terceiro_grau"
+    t.float    "tempo_monitoria"
+    t.integer  "inscricao_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "experiencia_docencia", ["inscricao_id"], name: "index_experiencia_docencia_on_inscricao_id"
+
+  create_table "experiencia_pdis", force: :cascade do |t|
+    t.float    "tempo_iniciacao"
+    t.float    "tempo_pdi"
+    t.integer  "inscricao_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "experiencia_pdis", ["inscricao_id"], name: "index_experiencia_pdis_on_inscricao_id"
+
+  create_table "experiencia_profissionals", force: :cascade do |t|
+    t.float    "tempo_chefia"
+    t.float    "tempo_nivel_superior"
+    t.float    "tempo_nivel_medio"
+    t.float    "tempo_sem_vinculo"
+    t.float    "tempo_estagio"
+    t.integer  "inscricao_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "experiencia_profissionals", ["inscricao_id"], name: "index_experiencia_profissionals_on_inscricao_id"
+
+  create_table "inscricaos", force: :cascade do |t|
+    t.float    "media_graduacao"
+    t.integer  "carga_horaria_graduacao"
+    t.boolean  "tem_pos_graduacao"
+    t.boolean  "graduacao_exterior"
+    t.float    "media_mestrado"
+    t.integer  "tempo_curso_mestrado"
+    t.string   "conceito_capes"
+    t.integer  "users_id"
+    t.integer  "processo_seletivos_linha_pesquisa_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "inscricaos", ["processo_seletivos_linha_pesquisa_id"], name: "index_inscricaos_on_processo_seletivos_linha_pesquisa_id"
+  add_index "inscricaos", ["users_id"], name: "index_inscricaos_on_users_id"
 
   create_table "linha_pesquisas", force: :cascade do |t|
     t.string   "descricao"
@@ -116,6 +166,18 @@ ActiveRecord::Schema.define(version: 20150207022423) do
   end
 
   add_index "processo_seletivos_linha_pesquisas", ["processo_seletivo_id", "linha_pesquisa_id"], name: "index_processo_seletivos_linha_pesquisas", unique: true
+
+  create_table "producao_cientificas", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "indice_publicacao"
+    t.boolean  "primeiro_autor"
+    t.string   "tipo_producao"
+    t.integer  "inscricao_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "producao_cientificas", ["inscricao_id"], name: "index_producao_cientificas_on_inscricao_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

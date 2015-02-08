@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listando :: Inscricoes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Linha de Pesquisa</th>
+      <th>Processo seletivo</th>
+      <th>Users</th>
+      <th>Processo seletivos linha pesquisa</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inscricaos.each do |inscricao| %>
+      <tr>
+        <td><%= inscricao.linha_pesquisa.descricao %></td>
+        <td><%= inscricao.processo_seletivo.descricao %></td>
+        <td><%= inscricao.users %></td>
+        <td><%= inscricao.processo_seletivos_linha_pesquisa %></td>
+        <td><%= link_to 'Show', inscricao %></td>
+        <td><%= link_to 'Edit', edit_inscricao_path(inscricao) %></td>
+        <td><%= link_to 'Destroy', inscricao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Inscricao', new_inscricao_path %>
