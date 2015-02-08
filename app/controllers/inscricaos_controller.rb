@@ -10,9 +10,6 @@ class InscricaosController < ApplicationController
 
   def show
     @inscricao = Inscricao.find(params[:id])
-    @processo_seletivo_linha_pesquisa = Processo_seletivos_linha_pesquisa.find(@inscricao.processo_seletivos_linha_pesquisa_id,@inscricao.linha_pesquisa_id)
-    @processo_seletivo = Processo_seletivo.find(@processo_seletivo_linha_pesquisa.processo_seletivo_id)
-    @linha_pesquisa = Linha_pesquisa.find(@inscricao.linha_pesquisa_id)
     respond_with(@inscricao)
   end
 
