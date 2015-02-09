@@ -27,21 +27,21 @@
           <% if current_user %>
             <li class="has-dropdown"> <a href="#">Processo Seletivo</a>
                 <ul class="dropdown"> 
-                  <% if can? :manage, @edital%>
+                  <% if can? :manage, Edital%>
                     <li><%= link_to 'Edital', editals_path %></li> 
                   <% end %>
-                  <% if can? :manage, @linha_pesquisa %>
+                  <% if can? :manage, LinhaPesquisa %>
                     <li><%= link_to 'Linhas de Pesquisa', linha_pesquisas_path %></li> 
                   <% end %>
-                  <% if can? :manage, @processo_seletivo%>
+                  <% if can? :manage, ProcessoSeletivo%>
                     <li><%= link_to 'Processo Seletivo', processo_seletivos_path %></li> 
                   <% end %>
-                  <%# if can? :manage, @inscricao%>
-                    <li><%= link_to 'Incricao', inscricaos_path %></li> 
-                  <%# end %>                  
                 </ul> 
             </li> 
-            <% if can? :manage, @user %>
+            <% if can? :manage, Inscricao%>
+              <li><%= link_to 'Inscricao', inscricaos_path %></li> 
+            <% end %>                  
+            <% if can? :manage, User %>
               <li ><%= link_to 'Users', users_path %></li>
             <% end %>
           <% end %>
