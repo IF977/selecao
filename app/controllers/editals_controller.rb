@@ -1,8 +1,8 @@
 class EditalsController < ApplicationController
-  load_and_authorize_resource
 
-  before_action :authenticate_user!
   before_action :set_edital, only: [:show, :edit, :update, :destroy]
+  before_action :load_edital, only: :create
+  load_and_authorize_resource
 
   respond_to :html
 
@@ -46,7 +46,9 @@ class EditalsController < ApplicationController
 
     def edital_params
       params.require(:edital).permit(:numero, :descricao, :data_publicacao, :arquivo)
+    end
 
-
+    def load_edital
+      @edital = Edital.new(edital_params)
     end
 end

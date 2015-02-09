@@ -1,8 +1,8 @@
 class ProcessoSeletivosController < ApplicationController
-  load_and_authorize_resource
 
-  before_action :authenticate_user!
   before_action :set_processo_seletivo, only: [:show, :edit, :update, :destroy]
+  before_action :load_processo_seletivo, only: :create
+  load_and_authorize_resource
 
   respond_to :html
 
@@ -64,5 +64,9 @@ class ProcessoSeletivosController < ApplicationController
         processo_seletivos_linha_pesquisas_attributes: [:processo_seletivo_id, :vagas, :linha_pesquisa_id],
         detalhes_eventos_attributes: [:id, :data_inicial, :data_final, :observacao, 
           :evento_id, :processo_seletivo_id, evento_attributes: [:id, :descricao]])
+    end
+
+    def load_processo_seletivo
+       @processo_seletivo = ProcessoSeletivo.new(processo_seletivo_params)
     end
 end

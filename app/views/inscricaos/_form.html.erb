@@ -2,6 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :processo_seletivos_linha_pesquisa, label_method: :descricao %>
     <%= f.input :media_graduacao %>
     <%= f.input :carga_horaria_graduacao %>
     <%= f.input :tem_pos_graduacao %>
@@ -10,7 +11,6 @@
     <%= f.input :tempo_curso_mestrado %>
     <%= f.input :conceito_capes %>
 
-    <%= f.association :processo_seletivos_linha_pesquisa %>
   </div>
 
   <div class="form-actions">
