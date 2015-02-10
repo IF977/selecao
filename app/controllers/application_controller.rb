@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   check_authorization :unless => :devise_controller?
 
+  before_filter :authenticate_user!
+
   #Se o usuário tentar acessar uma página para a qual não tem acesso, receberá um alerta 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: 'Você não está autorizado a acessar esta página.'

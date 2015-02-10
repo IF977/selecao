@@ -1,8 +1,8 @@
 class LinhaPesquisasController < ApplicationController
-  load_and_authorize_resource
 
-  before_action :authenticate_user!
   before_action :set_linha_pesquisa, only: [:show, :edit, :update, :destroy]
+  before_action :load_linha_pesquisa, only: :create
+  load_and_authorize_resource
 
   respond_to :html
 
@@ -48,6 +48,11 @@ class LinhaPesquisasController < ApplicationController
     end
 
     def linha_pesquisa_params
-      params.require(:linha_pesquisa).permit(:descricao, :edital_id)
+      params.require(:linha_pesquisa).permit(:id, :descricao)
     end
+
+    def load_linha_pesquisa
+      @linha_pesquisa = LinhaPesquisa.new(linha_pesquisa_params)
+    end
+
 end
