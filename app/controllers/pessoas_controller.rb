@@ -1,7 +1,8 @@
 class PessoasController < ApplicationController
   
-  before_action :authenticate_user!
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
+  before_action :load_pessoa, only: :create
+  load_and_authorize_resource
 
   respond_to :html
 
@@ -13,17 +14,23 @@ class PessoasController < ApplicationController
     redirect_to action: 'edit'
   end
 
+  def new
+    @pessoa = Pessoa.new()
+    @pessoa.user = current_user
+  end
+
   def edit
-    authorize! :update, @pessoa, :message => 'Não autorizado!.'
+    @pessoa = Pessoa.find(params[:id])
   end
 
   def create
+    authorize! :create, @pessoa, :message => 'Não autorizado!.'
     @pessoa = Pessoa.new(pessoa_params)
     @pessoa.user_id = current_user.id
     if @pessoa.save
-      respond_with(@pessoa)
+      redirect_to pessoas_path, :notice => "Dados pessoais atualizados."
     else
-      redirect_to pessoa_path, :alert => error_msgs
+      redirect_to new_pessoa_path, :alert => error_msgs
     end
   end
 
@@ -50,18 +57,17 @@ class PessoasController < ApplicationController
   end
 
   private
-    def set_pessoa
-      user=User.find(params[:id])
-    if user.pessoa == nil
-      @pessoa = Pessoa.new
-    else
-      @pessoa = Pessoa.find(user.pessoa.id)
-    end
-      @pessoa.user = user 
+    def set_pessoa    
+      @pessoa = Pessoa.find(params[:id])
+      @pessoa.user ||= current_user
     end
 
     def pessoa_params
-      params.require(:pessoa).permit(:nome, :cpf, :data_nascimento, :naturalidade, :nacionalidade, :estado_civil, :grau_formacao,  
-        :logradouro, :numero, :complemento, :bairro, :estado_id, :cidade_id, :cep)
+      params.require(:pessoa).permit(:id, :nome, :cpf, :data_nascimento, :naturalidade, :nacionalidade, :estado_civil, :grau_formacao,  
+        :logradouro, :numero, :complemento, :bairro, :estado_id, :cidade, :cep, :user)
+    end
+
+    def load_pessoa
+      @pessoa = Pessoa.new(pessoa_params)
     end
 end

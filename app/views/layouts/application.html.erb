@@ -52,7 +52,11 @@
             <li class="divider"></li> 
             <li class="has-dropdown"> <%= link_to current_user.email, '#'%>
               <ul class="dropdown">
-                <li><%= link_to 'Dados Pessoais', "/pessoa/edit/" + current_user.id.to_s %></li>
+                <li><%= if current_user.pessoa == nil
+                          link_to 'Dados Pessoais', new_pessoa_path
+                        else
+                          link_to 'Dados Pessoais', edit_pessoa_path(current_user.pessoa)
+                        end%></li>
                 <li><%= link_to 'Minha Conta', edit_user_registration_path %></li>
                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
               </ul> 

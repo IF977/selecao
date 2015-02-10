@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :inscricaos
 
-  get "/pessoa/edit/:id", :to => "pessoas#edit"
+  resources :pessoas
 
   resources :processo_seletivos
 
