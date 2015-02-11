@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :avaliacao_curriculos
+
   resources :inscricaos
 
   resources :pessoas
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   scope "/admin" do
     resources :users#, :only =>[:index, :edit, :update, :show]
   end
+
+  match "/cidades_por_estado" => "cidades#cidades_por_estado",  via: [:get, :post] #, as: :user_account
 
   get 'system/index'
 

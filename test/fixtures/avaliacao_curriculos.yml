@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nota_historicos: 1.5
+  nota_producao_cientifica: 1.5
+  nota_experiencia_docente: 1.5
+  nota_experiencia_pdi: 1.5
+  nota_experiencia_profissional: 1.5
+  user_id: 
+  inscricao_id: 
+
+two:
+  nota_historicos: 1.5
+  nota_producao_cientifica: 1.5
+  nota_experiencia_docente: 1.5
+  nota_experiencia_pdi: 1.5
+  nota_experiencia_profissional: 1.5
+  user_id: 
+  inscricao_id: 

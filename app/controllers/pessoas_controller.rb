@@ -16,7 +16,6 @@ class PessoasController < ApplicationController
 
   def new
     @pessoa = Pessoa.new()
-    @pessoa.user = current_user
   end
 
   def edit
@@ -26,7 +25,8 @@ class PessoasController < ApplicationController
   def create
     authorize! :create, @pessoa, :message => 'Não autorizado!.'
     @pessoa = Pessoa.new(pessoa_params)
-    @pessoa.user_id = current_user.id
+    @pessoa.user = current_user
+    #@pessoa.user_id = current_user.id
     if @pessoa.save
       redirect_to pessoas_path, :notice => "Dados pessoais atualizados."
     else
@@ -64,7 +64,7 @@ class PessoasController < ApplicationController
 
     def pessoa_params
       params.require(:pessoa).permit(:id, :nome, :cpf, :data_nascimento, :naturalidade, :nacionalidade, :estado_civil, :grau_formacao,  
-        :logradouro, :numero, :complemento, :bairro, :estado_id, :cidade, :cep, :user)
+        :logradouro, :numero, :complemento, :bairro, :estado_id, :cidade_id, :cep, :user)
     end
 
     def load_pessoa

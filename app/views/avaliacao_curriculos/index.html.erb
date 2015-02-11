@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listando :: Avaliação Currículos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nota historicos</th>
+      <th>Nota producao cientifica</th>
+      <th>Nota experiencia docente</th>
+      <th>Nota experiencia pdi</th>
+      <th>Nota experiencia profissional</th>
+      <th>User</th>
+      <th>Inscricao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @avaliacao_curriculos.each do |avaliacao_curriculo| %>
+      <tr>
+        <td><%= avaliacao_curriculo.nota_historicos %></td>
+        <td><%= avaliacao_curriculo.nota_producao_cientifica %></td>
+        <td><%= avaliacao_curriculo.nota_experiencia_docente %></td>
+        <td><%= avaliacao_curriculo.nota_experiencia_pdi %></td>
+        <td><%= avaliacao_curriculo.nota_experiencia_profissional %></td>
+        <td><%= avaliacao_curriculo.user %></td>
+        <td><%= avaliacao_curriculo.inscricao %></td>
+        <td><%= link_to 'Show', avaliacao_curriculo %></td>
+        <td><%= link_to 'Edit', edit_avaliacao_curriculo_path(avaliacao_curriculo) %></td>
+        <td><%= link_to 'Destroy', avaliacao_curriculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Avaliacao curriculo', new_avaliacao_curriculo_path %>

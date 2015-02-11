@@ -6,7 +6,7 @@
       <legend>Dados Pessoais</legend>
       <%= f.input :nome %>
       <%= f.input :cpf, label: "CPF" %>
-      <%= f.input :data_nascimento, as: :date %>
+      <%= f.input :data_nascimento, html5: true, class: "datetimepicker"  %>
       <%= f.input :naturalidade %>
       <%= f.input :nacionalidade %>
       <%= f.input :estado_civil, collection: [ "Solteiro", "Casado", "Divorciado", "Viúvo"], prompt: "Selecione..." %>
@@ -18,8 +18,9 @@
         <%= f.input :numero, label: "Número" %>
         <%= f.input :complemento %>
         <%= f.input :bairro %>
-        <%= f.association :estado, label_method: :nome, prompt: "Selecione", id: 'select_estado' %>
-        <%= f.input :cidade %>
+        <%= f.association :estado, label_method: :nome, prompt: "Selecione", id: 'pessoa_estado_id' %>
+        <%= f.association :cidade, label_method: :nome, prompt: "Selecione", id: 'pessoa_cidade_id' %>
+
         <%= f.input :cep, label: "CEP" %>
       </fieldset>
     </fieldset>
@@ -31,3 +32,22 @@
     <%= link_to 'Voltar', "/" %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+   jQuery("#pessoa_estado_id").change(function() {
+      getCidadesPorEstado("id="+jQuery("#pessoa_estado_id").val());
+    });
+  });
+
+  function getCidadesPorEstado(id) {
+    jQuery.getJSON("/cidades_por_estado", id, function(j) {
+      var options = '<option value="">Selecione</option>';
+      jQuery.each(j.cty, function(i, item) {
+        options += '<option value="' + item.id + '">' + item.n + '</option>';
+      });
+      jQuery("#pessoa_cidade_id").html(options);
+    });
+  }
+</script>

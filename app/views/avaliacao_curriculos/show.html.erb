@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nota historicos:</strong>
+  <%= @avaliacao_curriculo.nota_historicos %>
+</p>
+
+<p>
+  <strong>Nota producao cientifica:</strong>
+  <%= @avaliacao_curriculo.nota_producao_cientifica %>
+</p>
+
+<p>
+  <strong>Nota experiencia docente:</strong>
+  <%= @avaliacao_curriculo.nota_experiencia_docente %>
+</p>
+
+<p>
+  <strong>Nota experiencia pdi:</strong>
+  <%= @avaliacao_curriculo.nota_experiencia_pdi %>
+</p>
+
+<p>
+  <strong>Nota experiencia profissional:</strong>
+  <%= @avaliacao_curriculo.nota_experiencia_profissional %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @avaliacao_curriculo.user %>
+</p>
+
+<p>
+  <strong>Inscricao:</strong>
+  <%= @avaliacao_curriculo.inscricao %>
+</p>
+
+<%= link_to 'Edit', edit_avaliacao_curriculo_path(@avaliacao_curriculo) %> |
+<%= link_to 'Back', avaliacao_curriculos_path %>

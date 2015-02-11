@@ -12,7 +12,7 @@ class CreatePessoas < ActiveRecord::Migration
       t.string :numero
       t.string :complemento
       t.string :bairro
-      t.string :cidade
+      t.references :cidade
       t.references :estado, index: true
       t.string :cep
       t.references :user, index: true

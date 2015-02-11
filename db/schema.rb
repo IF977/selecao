@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208155627) do
+ActiveRecord::Schema.define(version: 20150211145116) do
+
+  create_table "avaliacao_curriculos", force: :cascade do |t|
+    t.float    "nota_historicos"
+    t.float    "nota_producao_cientifica"
+    t.float    "nota_experiencia_docente"
+    t.float    "nota_experiencia_pdi"
+    t.float    "nota_experiencia_profissional"
+    t.integer  "user_id"
+    t.integer  "inscricao_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "avaliacao_curriculos", ["inscricao_id"], name: "index_avaliacao_curriculos_on_inscricao_id"
+  add_index "avaliacao_curriculos", ["user_id"], name: "index_avaliacao_curriculos_on_user_id"
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
@@ -125,7 +140,7 @@ ActiveRecord::Schema.define(version: 20150208155627) do
     t.string   "numero"
     t.string   "complemento"
     t.string   "bairro"
-    t.string   "cidade"
+    t.integer  "cidade_id"
     t.integer  "estado_id"
     t.string   "cep"
     t.integer  "user_id"
