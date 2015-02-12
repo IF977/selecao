@@ -81,13 +81,13 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @pessoa.nome %>
+  <strong>Candidato:</strong>
+  <%= @inscricao.pessoa.nome %>
 </p>
 
 <p>
   <strong>Processo seletivos linha pesquisa:</strong>
-  <%= @inscricao.processo_seletivos_linha_pesquisa %>
+  <%= @inscricao.processo_seletivos_linha_pesquisa.descricao %>
 </p>
 
 <%= link_to 'Confirmar', edit_inscricao_path(@inscricao) %> 

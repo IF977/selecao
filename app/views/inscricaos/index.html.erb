@@ -17,8 +17,8 @@
     <% @inscricaos.each do |inscricao| %>
       <tr>
         <td><%= inscricao.id %></td>
-        <td><%= @user.email %></td>
-        <td><%= inscricao.processo_seletivos_linha_pesquisa %></td>
+        <td><%= inscricao.pessoa.nome %></td>
+        <td><%= inscricao.processo_seletivos_linha_pesquisa.descricao %></td>
         <td><%= link_to 'Show', inscricao %></td>
         <td><%= link_to 'Edit', edit_inscricao_path(inscricao) %></td>
         <td><%= link_to 'Destroy', inscricao, method: :delete, data: { confirm: 'Are you sure?' } %></td>

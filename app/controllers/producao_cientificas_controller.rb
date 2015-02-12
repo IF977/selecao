@@ -37,12 +37,14 @@ class ProducaoCientificasController < ApplicationController
   def destroy
     @inscricao_id = @producao_cientifica.inscricao_id
     @producao_cientifica.destroy
-    #redirect_to url_for(:controller => "inscricaos", :action => :edit, :id=> @inscricao_id)
+    redirect_to url_for(:controller => "inscricaos", :action => :edit, :id=> @inscricao_id)
   end
 
   private
     def set_producao_cientifica
-      @producao_cientifica = ProducaoCientifica.find(params[:id])
+      if (params[:id])
+        @producao_cientifica = ProducaoCientifica.find(params[:id])
+      end
     end
 
     def producao_cientifica_params

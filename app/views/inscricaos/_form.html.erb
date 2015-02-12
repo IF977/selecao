@@ -1,8 +1,8 @@
 <%= simple_form_for(@inscricao) do |f| %>
   <%= f.error_notification %>
-  
+  <% if @pessoa != nil%>
   <div class="form-inputs">
-
+    
     <div class="input text optional pessoa_nome">
       <label for="pessoa_nome" class="text">Nome</label>
       <input type="text" id="pessoa_nome" name="pessoa[nome]"
@@ -76,9 +76,10 @@ em áreas afins"} %>
 
 
   <div class="form-actions">
-   <% if !@inscricao.new_record? %>
-     
-  <% end %>
-    <%= f.button :submit %>
+       <%= f.button :submit %>
   </div>
+  <% else %>
+    <div style="color:red " >Para realizar a inscrição deve-se cadastrar os dados pessoais no link abaixo:</div>
+    <%= link_to 'Cadastrar Dados Pessoais', new_pessoa_path %>
+  <% end %>
 <% end %>
