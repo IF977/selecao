@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @producao_cientifica.nome %>
+</p>
+
+<p>
+  <strong>Indice publicacao:</strong>
+  <%= @producao_cientifica.indice_publicacao %>
+</p>
+
+<p>
+  <strong>Primeiro autor:</strong>
+  <%= @producao_cientifica.primeiro_autor %>
+</p>
+
+<p>
+  <strong>Tipo producao:</strong>
+  <%= @producao_cientifica.tipo_producao %>
+</p>
+
+<p>
+  <strong>Inscricao:</strong>
+  <%= @producao_cientifica.inscricao %>
+</p>
+
+<%= link_to 'Edit', edit_producao_cientifica_path(@producao_cientifica) %> |
+<%= link_to 'Back', producao_cientificas_path %>

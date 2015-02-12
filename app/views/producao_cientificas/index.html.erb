@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Producao Cientificas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Indice publicacao</th>
+      <th>Primeiro autor</th>
+      <th>Tipo producao</th>
+      <th>Inscricao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @producao_cientificas.each do |producao_cientifica| %>
+      <tr>
+        <td><%= producao_cientifica.nome %></td>
+        <td><%= producao_cientifica.indice_publicacao %></td>
+        <td><%= producao_cientifica.primeiro_autor %></td>
+        <td><%= producao_cientifica.tipo_producao %></td>
+        <td><%= producao_cientifica.inscricao %></td>
+        <td><%= link_to 'Show', producao_cientifica %></td>
+        <td><%= link_to 'Edit', edit_producao_cientifica_path(producao_cientifica) %></td>
+        <td><%= link_to 'Destroy', producao_cientifica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Producao cientifica', new_producao_cientifica_path %>

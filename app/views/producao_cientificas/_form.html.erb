@@ -1,0 +1,19 @@
+<%= simple_form_for(@producao_cientifica) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+        <label for="inscricao_id" class="text">Numero Inscrção</label>
+        <input type="text" id="inscricao_id" name="producao_cientifica[inscricao_id]"
+            size="20" value="<%= params['inscricao_id'] %>" readonly="readonly" />
+    <%= f.input :nome %>
+    <%= f.input :indice_publicacao %>
+    <%= f.input :primeiro_autor %>
+    <%= f.input :tipo_producao %>   
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

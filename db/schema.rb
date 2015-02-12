@@ -113,14 +113,23 @@ ActiveRecord::Schema.define(version: 20150211145116) do
     t.float    "media_mestrado"
     t.integer  "tempo_curso_mestrado"
     t.string   "conceito_capes"
-    t.integer  "users_id"
+    t.float    "tempo_terceiro_grau"
+    t.float    "tempo_monitoria"
+    t.float    "tempo_iniciacao"
+    t.float    "tempo_pdi"
+    t.float    "tempo_chefia"
+    t.float    "tempo_nivel_superior"
+    t.float    "tempo_nivel_medio"
+    t.float    "tempo_sem_vinculo"
+    t.float    "tempo_estagio"
+    t.integer  "user_id"
     t.integer  "processo_seletivos_linha_pesquisa_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
 
   add_index "inscricaos", ["processo_seletivos_linha_pesquisa_id"], name: "index_inscricaos_on_processo_seletivos_linha_pesquisa_id"
-  add_index "inscricaos", ["users_id"], name: "index_inscricaos_on_users_id"
+  add_index "inscricaos", ["user_id"], name: "index_inscricaos_on_user_id"
 
   create_table "linha_pesquisas", force: :cascade do |t|
     t.string   "descricao"
@@ -174,7 +183,7 @@ ActiveRecord::Schema.define(version: 20150211145116) do
 
   add_index "processo_seletivos", ["edital_id"], name: "index_processo_seletivos_on_edital_id"
 
-  create_table "processo_seletivos_linha_pesquisas", id: false, force: :cascade do |t|
+  create_table "processo_seletivos_linha_pesquisas", force: :cascade do |t|
     t.integer "vagas"
     t.integer "processo_seletivo_id"
     t.integer "linha_pesquisa_id"

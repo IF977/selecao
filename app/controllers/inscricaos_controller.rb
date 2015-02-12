@@ -1,5 +1,4 @@
 class InscricaosController < ApplicationController
-
   before_action :set_inscricao, only: [:show, :edit, :update, :destroy]
   before_action :load_inscricao, only: :create
   load_and_authorize_resource
@@ -8,24 +7,29 @@ class InscricaosController < ApplicationController
 
   def index
     @inscricaos = Inscricao.all
+     @user = User.find(1)
     respond_with(@inscricaos)
   end
 
   def show
     @inscricao = Inscricao.find(params[:id])
+    @pessoa = Pessoa.where(:user_id => @inscricao.user_id).first
     respond_with(@inscricao)
   end
 
   def new
     @inscricao = Inscricao.new
+    @pessoa = Pessoa.where(:user_id => current_user.id).first 
     respond_with(@inscricao)
   end
 
   def edit
+    @pessoa = Pessoa.where(:user_id => @inscricao.user_id).first
   end
 
   def create
     @inscricao = Inscricao.new(inscricao_params)
+    @inscricao.user_id = current_user.id    
     @inscricao.save
     respond_with(@inscricao)
   end
@@ -46,10 +50,19 @@ class InscricaosController < ApplicationController
     end
 
     def inscricao_params
-      params.require(:inscricao).permit(:media_graduacao, :carga_horaria_graduacao, :tem_pos_graduacao, :graduacao_exterior, :media_mestrado, :tempo_curso_mestrado, :conceito_capes, :users_id, :processo_seletivos_linha_pesquisa_id)
+      params.require(:inscricao).permit(:media_graduacao, :carga_horaria_graduacao, 
+        :tem_pos_graduacao, :graduacao_exterior, :media_mestrado, :tempo_curso_mestrado, 
+        :conceito_capes, :tempo_terceiro_grau, :tempo_monitoria, :tempo_iniciacao, 
+        :tempo_pdi, :tempo_chefia, :tempo_nivel_superior, :tempo_nivel_medio, 
+        :tempo_sem_vinculo, :tempo_estagio, :user_id, :processo_seletivos_linha_pesquisa_id,
+         processo_seletivos_linha_pesquisas_attributes: [:id,:processo_seletivo_id, :vagas, :linha_pesquisa_id],
+        user_attributes: [:id, :email],
+        pessoa_attributes: [:nome]        
+
+        )
     end
 
     def load_inscricao
       @inscricao = Inscricao.new(inscricao_params)
-    end
+    end    
 end

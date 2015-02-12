@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listando :: Inscricoes</h1>
+<h1>Listando :: Inscricaos</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Numero Inscricao</th>
+      <th>Candidato</th>
       <th>Linha de Pesquisa</th>
-      <th>Processo seletivo</th>
-      <th>Users</th>
-      <th>Processo seletivos linha pesquisa</th>
+      <th colspan="3"></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +16,8 @@
   <tbody>
     <% @inscricaos.each do |inscricao| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td><%= inscricao.users %></td>
+        <td><%= inscricao.id %></td>
+        <td><%= @user.email %></td>
         <td><%= inscricao.processo_seletivos_linha_pesquisa %></td>
         <td><%= link_to 'Show', inscricao %></td>
         <td><%= link_to 'Edit', edit_inscricao_path(inscricao) %></td>

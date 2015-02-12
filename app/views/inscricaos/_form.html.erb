@@ -1,19 +1,84 @@
 <%= simple_form_for(@inscricao) do |f| %>
   <%= f.error_notification %>
-
+  
   <div class="form-inputs">
-    <%= f.association :processo_seletivos_linha_pesquisa, label_method: :descricao %>
-    <%= f.input :media_graduacao %>
-    <%= f.input :carga_horaria_graduacao %>
-    <%= f.input :tem_pos_graduacao %>
-    <%= f.input :graduacao_exterior %>
-    <%= f.input :media_mestrado %>
-    <%= f.input :tempo_curso_mestrado %>
-    <%= f.input :conceito_capes %>
 
-  </div>
+    <div class="input text optional pessoa_nome">
+      <label for="pessoa_nome" class="text">Nome</label>
+      <input type="text" id="pessoa_nome" name="pessoa[nome]"
+            size="20" value="<%= @pessoa.nome %>" readonly="readonly" />
+    </div>  
+    <%= f.association :processo_seletivos_linha_pesquisa, label_method: :descricao, value_method: :id, prompt: "Selecione"  %>  
+    <%= f.input :media_graduacao, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Média do Histórico Escolar da Graduação" }%>
+    <%= f.input :carga_horaria_graduacao , :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Carga Horária
+ em horas" }%>
+    <%= f.input :tem_pos_graduacao, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Ter concluído com êxito um curso de pós-graduação lato sensu."} %>
+    <%= f.input :graduacao_exterior, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Curso de Graduação realizados no
+exterior." }%>
+    <%= f.input :media_mestrado, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Média Geral do Histórico Escolar do Mestrado" }%>
+    <%= f.input :tempo_curso_mestrado, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Tem curso de mestrado em meses" }%>
+    <%= f.input :conceito_capes, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Se seleção para mestrado informar Conceito CAPS para o Programa de Pós-Graduação na mesma área e instituição do curso de Graduação do candidato. Se seleção para doutorado informar o Conceito CAPS para o Programa de Pós-Graduação na área do curso de Pós-Graduação do candidato" }%>
+
+    <fieldset>
+        <legend>Experiência Docencia(em anos)</legend>
+        <%= f.input :tempo_terceiro_grau, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Professor de Terceiro Grau na área ou área afim" }%>
+        <%= f.input :tempo_monitoria, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Monitoria" } %>
+    </fieldset>
+    <fieldset>
+        <legend>Experiência em PDI(em anos)</legend>    
+        <%= f.input :tempo_iniciacao, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Iniciação Científica" }%>
+        <%= f.input :tempo_pdi, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Bolsa de P&D&I" } %>
+    </fieldset>
+     <fieldset>
+
+        <legend>Experiência Profissional Não Docente(em anos)</legend>   
+
+        <%= f.input :tempo_chefia, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Profissional de nível superior com vínculo empregatício na área do programa ou
+em áreas afins com responsabilidades de coordenação, chefia ou trabalho muito
+especializado.
+" } %>
+        <%= f.input :tempo_nivel_superior, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Profissional de nível superior com vínculo empregatício na área do programa ou
+em áreas afins" } %>
+        <%= f.input :tempo_nivel_medio, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Profissional de nível médio com vínculo empregatício na área do programa ou
+em áreas afins"} %>
+        <%= f.input :tempo_sem_vinculo, :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Atividades de nível superior sem vínculo empregatício" }%>
+        <%= f.input :tempo_estagio , :html5 => true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Estágio Extra-Curricular (período mínimo de 120 horas)"}%>
+    </fieldset>
+     <% if !@inscricao.new_record? %>
+    <fieldset>
+        <%= link_to 'Cadastrar Nova Producao',  {:controller => "/producao_cientificas", :action => "new", :inscricao_id => @inscricao.id} %>
+        <legend>Produção Cientifica</legend>       
+        <table>
+          <thead>
+                  <tr>
+                     <td>Nome</td>
+                     <td>Indice Publicação</td>
+                     <td>Primeiro Autor</td>              
+                     <td>Tipo da Produção</td>  
+                  </tr>
+        </thead>            
+            <% @inscricao.producao_cientificas.each do |producao_cientifica| %>
+              <tr id="producao_cientifica_"<%=producao_cientifica.id%>>
+                <td><%= producao_cientifica.nome %></td>
+                <td><%= producao_cientifica.indice_publicacao %></td>
+                <td><%= producao_cientifica.primeiro_autor %></td>
+                <td><%= producao_cientifica.tipo_producao %></td>                           
+                <td><%= link_to 'Excluir', producao_cientifica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+
+            <% end %>   
+                              
+        </tbody>
+      </table>        
+    </fieldset>
+    <% end %>
+  </div>  
+
 
   <div class="form-actions">
+   <% if !@inscricao.new_record? %>
+     
+  <% end %>
     <%= f.button :submit %>
   </div>
 <% end %>

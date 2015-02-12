@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :avaliacao_curriculos
 
+  resources :producao_cientificas
+
   resources :inscricaos
 
   resources :pessoas

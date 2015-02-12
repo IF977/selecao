@@ -36,8 +36,53 @@
 </p>
 
 <p>
-  <strong>Users:</strong>
-  <%= @inscricao.users %>
+  <strong>Tempo terceiro grau:</strong>
+  <%= @inscricao.tempo_terceiro_grau %>
+</p>
+
+<p>
+  <strong>Tempo monitoria:</strong>
+  <%= @inscricao.tempo_monitoria %>
+</p>
+
+<p>
+  <strong>Tempo iniciacao:</strong>
+  <%= @inscricao.tempo_iniciacao %>
+</p>
+
+<p>
+  <strong>Tempo pdi:</strong>
+  <%= @inscricao.tempo_pdi %>
+</p>
+
+<p>
+  <strong>Tempo chefia:</strong>
+  <%= @inscricao.tempo_chefia %>
+</p>
+
+<p>
+  <strong>Tempo nivel superior:</strong>
+  <%= @inscricao.tempo_nivel_superior %>
+</p>
+
+<p>
+  <strong>Tempo nivel medio:</strong>
+  <%= @inscricao.tempo_nivel_medio %>
+</p>
+
+<p>
+  <strong>Tempo sem vinculo:</strong>
+  <%= @inscricao.tempo_sem_vinculo %>
+</p>
+
+<p>
+  <strong>Tempo estagio:</strong>
+  <%= @inscricao.tempo_estagio %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @pessoa.nome %>
 </p>
 
 <p>
@@ -45,5 +90,5 @@
   <%= @inscricao.processo_seletivos_linha_pesquisa %>
 </p>
 
-<%= link_to 'Edit', edit_inscricao_path(@inscricao) %> |
-<%= link_to 'Back', inscricaos_path %>
+<%= link_to 'Confirmar', edit_inscricao_path(@inscricao) %> 
+

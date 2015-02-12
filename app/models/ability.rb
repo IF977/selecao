@@ -18,9 +18,6 @@ class Ability
                 #Aqui vão todas as ações permitidas a usuários logados, mas sem papel, ou seja, candidatos
                 #can :manage, Inscricao, :user_id => user.id
                 can :manage, Inscricao
-                can :manage, ExperienciaPdi
-                can :manage, ExperienciaDocencia
-                can :manage, ExperienciaProfissional
                 can :manage, ProducaoCientifica
             end
             #Aqui vão as permissões para qualquer usuário logado
