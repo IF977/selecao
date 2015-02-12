@@ -7,7 +7,6 @@ class InscricaosController < ApplicationController
 
   def index
     @inscricaos = Inscricao.all
-     @user = User.find(1)
     respond_with(@inscricaos)
   end
 
