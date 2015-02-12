@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   resources :avaliacao_curriculos
 
-  get "/buscar" => "avaliacao_curriculos#buscar"
+ # get "/avaliar_curriculos/atribuir_avaliador" #=> "avaliacao_curriculos#buscar"
 
-  get "/resultado/:av", :to => "avaliacao_curriculos#resultado"
+  get "/avaliar_curriculos/:av", :to => "avaliacao_curriculos#avaliar_curriculos"
 
   resources :producao_cientificas
 

@@ -5,6 +5,7 @@ class Ability
     
         #user ||= User.new # guest user (not logged in)
         if user != nil
+            can :manage, Cidade
             if user.has_role? :Admin
                 can :manage, :all
             elsif user.has_role? :Gestor
@@ -13,7 +14,7 @@ class Ability
                 can :manage, :linha_pesquisa
             elsif user.has_role? :Avaliador
                 #All the "Avaliador" stuff go here
-                can [:edit, :show, :update, :index, :resultado], AvaliacaoCurriculo
+                can [:edit, :show, :update, :index, :avaliar_curriculos], AvaliacaoCurriculo
             else
                 #Aqui vão todas as ações permitidas a usuários logados, mas sem papel, ou seja, candidatos
                 #can :manage, Inscricao, :user_id => user.id

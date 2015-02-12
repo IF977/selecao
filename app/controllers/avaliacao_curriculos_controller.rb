@@ -49,7 +49,7 @@ class AvaliacaoCurriculosController < ApplicationController
     if av.nota_historicos == nil
       erros = erros + "A nota dos históricos deve ser informada.\n"
     end
-    if av.producao_cientifica == nil
+    if av.nota_producao_cientifica == nil
       erros = erros + "A nota de produção científica deve ser informada.\n"
     end
     if av.nota_experiencia_docente == nil
@@ -71,7 +71,7 @@ class AvaliacaoCurriculosController < ApplicationController
   def buscar
   end
 
-  def resultado
+  def avaliar_curriculos
     avaliador = current_user.id
     @avaliacao_curriculos = AvaliacaoCurriculo.search(params[:av])
     respond_with @avaliacao_curriculos

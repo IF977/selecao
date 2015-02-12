@@ -10,4 +10,8 @@ class Inscricao < ActiveRecord::Base
   def nome_candidato
   	self.user.pessoa.nome + "/" + self.processo_seletivos_linha_pesquisa.processo_seletivo.descricao
   end
+
+  def descricao_proc_seletivo
+  	self.processo_seletivos_linha_pesquisa.processo_seletivo.descricao
+  end
 end

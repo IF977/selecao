@@ -79,7 +79,8 @@ em áreas afins"} %>
        <%= f.button :submit %>
   </div>
   <% else %>
-    <div style="color:red " >Para realizar a inscrição deve-se cadastrar os dados pessoais no link abaixo:</div>
+    <div style="color:red " ><strong>Para realizar a inscrição deve-se cadastrar os dados pessoais no link abaixo:</strong></div>
+    <br/>
     <%= link_to 'Cadastrar Dados Pessoais', new_pessoa_path %>
   <% end %>
 <% end %>
