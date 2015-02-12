@@ -6,7 +6,13 @@ class InscricaosController < ApplicationController
   respond_to :html
 
   def index
-    @inscricaos = Inscricao.all
+    if (current_user.has_role? :Admin) ||
+      (current_user.has_role? :Gestor) ||
+      (current_user.has_role? :Avaliador )
+      @inscricaos = Inscricao.all
+    else
+      @inscricaos = Inscricao.where(:user_id => current_user.id)
+    end
     respond_with(@inscricaos)
   end
 
