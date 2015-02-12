@@ -9,7 +9,7 @@
    
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "jquery.datetimepicker" %>
-    <%= javascript_include_tag "application" %>
+    
     <%= javascript_include_tag "custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
@@ -100,8 +100,11 @@
         <%= flash[:messages] %>
         </div>
       <% end %>
-     
     <!-- End Flash messages -->
+    
+    <!-- Carregar javascript -->
+    <%= javascript_include_tag "application" %>
+    <!-- Fim - Carregar javascript -->
 
     <!-- Conteudo -->
     <div class="row">
