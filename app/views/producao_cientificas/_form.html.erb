@@ -7,10 +7,14 @@
         <input type="text" id="inscricao_id" name="producao_cientifica[inscricao_id]"
             size="20" value="<%= params['inscricao_id'] %>" readonly="readonly" />
     <%= f.input :nome %>
-    <%= f.input :indice_publicacao %>
-    <%= f.input :primeiro_autor %>
-    <%= f.input :tipo_producao %>   
+<div class="input string optional producao_cientifica_indice_publicacao"><label for="indice_publicacao" class="string optional">Indice da Produção</label>
+    <%= f.select :indice_publicacao, ['Selecione','A1', 'A2', 'B1', 'B2','B3','B4','B5']%></div>
 
+
+    <%= f.input :primeiro_autor %>
+    
+        
+<div class="input string optional producao_cientifica_tipo_producao"><label for="tipo_producao" class="string optional">Tipo Produção</label><%= f.select :tipo_producao, ['Selecione','Evento', 'Periodico']  %></div>
   </div>
 
   <div class="form-actions">
