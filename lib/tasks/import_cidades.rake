@@ -7,7 +7,6 @@ namespace :csv do
 
     #Estados
     estados_file_path = 'db/seeds/estados.csv'
-    print ('Incluindo estados. Aguarde. \n')
     CSV.foreach(estados_file_path) do |row|
       Estado.create!({
         :id => row[0],
@@ -18,7 +17,7 @@ namespace :csv do
 
     #Cidades
     cidades_file_path = 'db/seeds/cidades.csv'
-    print ('Incluindo cidades. Aguarde. \n')
+    print ('Incluindo cidades. Esta operação poderá levar algns minutos. Aguarde.   ')
     CSV.foreach(cidades_file_path) do |row|
      Cidade.create!({
        :id => row[0],
