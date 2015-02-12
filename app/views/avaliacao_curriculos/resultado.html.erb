@@ -1,0 +1,22 @@
+<h3>Listando :: Avaliações</h3>
+
+<table>
+	<thead>
+    <tr>
+      <th>Candidato</th>
+      <th>Processo Seletivo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @avaliacao_curriculos.each do |avaliacao_curriculo| %>
+      <tr>
+        <td><%= avaliacao_curriculo.inscricao.usuario.pessoa.nome %></td>
+        <td><%= avaliacao_curriculo.inscricao.processo_seletivo_linha_pesquisa.processo_seletivo.descricao %></td>
+        <td><%= link_to 'Show', avaliacao_curriculo %></td>
+        <td><%= link_to 'Edit', edit_avaliacao_curriculo_path(avaliacao_curriculo) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

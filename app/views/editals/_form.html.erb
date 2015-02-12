@@ -6,7 +6,7 @@
       <legend>Dados Edital</legend>
       <%= f.input :numero, label: "Número" %>
       <%= f.input :descricao, label: "Descrição" %>
-      <%= f.input :data_publicacao, as: :date, label: "Data de publicação"  %>
+      <%= f.input :data_publicacao, label: "Data de publicação", html5: true, input_html: {class: "datetimepicker"} %>
       <div class="field">
         <%= f.label "Arquivo do edital" %><br>
         <%= f.file_field :arquivo %>

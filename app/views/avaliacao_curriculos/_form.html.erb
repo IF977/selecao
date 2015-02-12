@@ -2,13 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :nota_historicos %>
-    <%= f.input :nota_producao_cientifica %>
-    <%= f.input :nota_experiencia_docente %>
-    <%= f.input :nota_experiencia_pdi %>
-    <%= f.input :nota_experiencia_profissional %>
-    <%= f.association :user %>
-    <%= f.association :inscricao %>
+    <%= f.association :user, label_method: :nome_usuario %>
+    <%= f.association :inscricao, label_method: :nome_candidato %>
   </div>
 
   <div class="form-actions">

@@ -9,7 +9,6 @@
    
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "jquery.datetimepicker" %>
-    
     <%= javascript_include_tag "custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
@@ -26,26 +25,27 @@
         <!-- Left Nav Section -->
         <ul class="left"> 
           <% if current_user %>
-            <li class="has-dropdown"> <a href="#">Processo Seletivo</a>
-                <ul class="dropdown"> 
-                  <% if can? :manage, Edital%>
-                    <li><%= link_to 'Edital', editals_path %></li> 
-                  <% end %>
-                  <% if can? :manage, LinhaPesquisa %>
-                    <li><%= link_to 'Linhas de Pesquisa', linha_pesquisas_path %></li> 
-                  <% end %>
-                  <% if can? :manage, ProcessoSeletivo%>
-                    <li><%= link_to 'Processo Seletivo', processo_seletivos_path %></li> 
-                  <% end %>
-                </ul> 
-            </li> 
-            <% if current_user.has_role? 'Avaliador'%>
-              <li class="has-dropdown"> <a href="#">Avaliação</a>
+            <% if current_user.has_role? 'Admin' %>
+              <li class="has-dropdown"> <a href="#">Processo Seletivo</a>
                   <ul class="dropdown"> 
-                      <li><%= link_to 'Avaliação Currículo', avaliacao_curriculos_path %></li> 
+                    <% if can? :manage, Edital%>
+                      <li><%= link_to 'Edital', editals_path %></li> 
+                    <% end %>
+                    <% if can? :manage, LinhaPesquisa %>
+                      <li><%= link_to 'Linhas de Pesquisa', linha_pesquisas_path %></li> 
+                    <% end %>
+                    <% if can? :manage, ProcessoSeletivo%>
+                      <li><%= link_to 'Processo Seletivo', processo_seletivos_path %></li> 
+                    <% end %>
                   </ul> 
-              </li>
-            <% end %>   
+              </li> 
+            <% end %>
+            <% if current_user.has_role? 'Avaliador' %>
+              <li><%= link_to 'Avaliação Currículo', "/resultado/" + current_user.id.to_s %></li> 
+            <% end %>
+            <% if can? :new, AvaliacaoCurriculo %>
+              <li><%= link_to 'Atribuir Avaliador', new_avaliacao_curriculo_path %></li> 
+            <% end %>  
             <% if can? :manage, Inscricao%>
               <li><%= link_to 'Inscricao', inscricaos_path %></li> 
             <% end %>                  
@@ -134,14 +134,15 @@
     <!-- End Footer -->
     <%= javascript_include_tag "jquery.datetimepicker" %>
     <script type="text/javascript">
-      $('.datetimepicker').datetimepicker();    
-      $('.datepicker').datetimepicker({
-        timepicker:false,
-        format:'d/m/Y',
-        formatDate:'Y/m/d',
-        minDate:'-1970/01/02', // yesterday is minimum date
-        maxDate:'+1970/01/02' // and tommorow is maximum date calendar
-      });
+      $('.datetimepicker').datetimepicker({
+       format:'d/m/Y H:i',
+       formatDate:'Y/m/d   '          
+     });    
+     $('.datepicker').datetimepicker({
+       timepicker:false,
+       format:'d/m/Y',
+       formatDate:'Y/m/d',
+     });
     </script>
   </body>
 </html>

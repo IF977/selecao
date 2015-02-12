@@ -6,7 +6,7 @@
       <legend>Dados Pessoais</legend>
       <%= f.input :nome %>
       <%= f.input :cpf, label: "CPF" %>
-      <%= f.input :data_nascimento, html5: true, class: "datetimepicker"  %>
+      <%= f.input :data_nascimento, html5: true, input_html: {class: "datetimepicker"}  %>
       <%= f.input :naturalidade %>
       <%= f.input :nacionalidade %>
       <%= f.input :estado_civil, collection: [ "Solteiro", "Casado", "Divorciado", "Viúvo"], prompt: "Selecione..." %>

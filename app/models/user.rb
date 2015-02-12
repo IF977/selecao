@@ -23,4 +23,10 @@ class User < ActiveRecord::Base
     retorno
   end
 
+  def nome_usuario
+    if self.pessoa != nil
+      self.pessoa.nome
+    end
+  end 
+
 end

@@ -13,7 +13,7 @@ class Ability
                 can :manage, :linha_pesquisa
             elsif user.has_role? :Avaliador
                 #All the "Avaliador" stuff go here
-                can [:edit, :show, :update, :index], AvaliacaoCurriculo
+                can [:edit, :show, :update, :index, :resultado], AvaliacaoCurriculo
             else
                 #Aqui vão todas as ações permitidas a usuários logados, mas sem papel, ou seja, candidatos
                 #can :manage, Inscricao, :user_id => user.id

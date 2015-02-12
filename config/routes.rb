@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   resources :avaliacao_curriculos
 
+  get "/buscar" => "avaliacao_curriculos#buscar"
+
+  get "/resultado/:av", :to => "avaliacao_curriculos#resultado"
+
   resources :producao_cientificas
 
   resources :inscricaos
@@ -26,7 +30,7 @@ Rails.application.routes.draw do
     resources :users#, :only =>[:index, :edit, :update, :show]
   end
 
-  match "/cidades_por_estado" => "cidades#cidades_por_estado",  via: [:get, :post] #, as: :user_account
+  match "/cidades_por_estado" => "cidades#cidades_por_estado",  via: [:get, :post] 
 
   get 'system/index'
 

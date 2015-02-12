@@ -6,4 +6,8 @@ class Inscricao < ActiveRecord::Base
   has_one :pessoa, through: :user
 
   accepts_nested_attributes_for :producao_cientificas
+
+  def nome_candidato
+  	self.user.pessoa.nome + "/" + self.processo_seletivos_linha_pesquisa.processo_seletivo.descricao
+  end
 end
