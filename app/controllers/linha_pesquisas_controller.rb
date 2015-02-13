@@ -25,14 +25,12 @@ class LinhaPesquisasController < ApplicationController
   end
 
   def create
-    authorize! :create, @linha_pesquisa, :message => 'Não autorizado!'
     @linha_pesquisa = LinhaPesquisa.new(linha_pesquisa_params)
     @linha_pesquisa.save
     respond_with(@linha_pesquisa)
   end
 
   def update
-    authorize! :update, @linha_pesquisa, :message => 'Não autorizado!'
     @linha_pesquisa.update(linha_pesquisa_params)
     respond_with(@linha_pesquisa)
   end

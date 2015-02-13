@@ -1,13 +1,11 @@
-<%= simple_form_for(@avaliacao_curriculo) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :user, label_method: :nome_usuario, prompt: 'Selecione', collection: Role.find_by_name('Avaliador').users %>
-    <%= f.association :inscricao, label_method: :nome_candidato, prompt: 'Selecione' %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Salvar", class: "my-button" %>
-    <%= link_to 'Voltar', editals_path %>
-  </div>
-<% end %>
+  <% if current_user.has_role? 'Admin' %>
+	  <%= f.simple_fields_for :avaliacao_curriculo do |builder| %>
+		<%= render "atribuir_avaliador_fields", :f => builder %>
+	  <% end %>
+  <% elsif current_user.has_role? 'Avaliador' %>
+  	  
+		<%= render "avaliacao_fields" %>
+
+  <% end %>

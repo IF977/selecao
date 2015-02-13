@@ -1,18 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listando :: Avaliação Currículos</h1>
-
 <table>
   <thead>
     <tr>
-      <th>Candidatura</th>
-      <th>Avaliador</th>
-      <th>Nota historicos</th>
-      <th>Nota producao cientifica</th>
-      <th>Nota experiencia docente</th>
-      <th>Nota experiencia pdi</th>
-      <th>Nota experiencia profissional</th>
-      <th colspan="3">Ações</th>
+      <th>Candidato</th>
+      <th>Processo Seletivo</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -20,19 +14,25 @@
     <% @avaliacao_curriculos.each do |avaliacao_curriculo| %>
       <tr>
         <td><%= avaliacao_curriculo.inscricao.nome_candidato %></td>
-        <td><%= avaliacao_curriculo.user.nome_usuario %></td>
-        <td><%= avaliacao_curriculo.nota_historicos %></td>
-        <td><%= avaliacao_curriculo.nota_producao_cientifica %></td>
-        <td><%= avaliacao_curriculo.nota_experiencia_docente %></td>
-        <td><%= avaliacao_curriculo.nota_experiencia_pdi %></td>
-        <td><%= avaliacao_curriculo.nota_experiencia_profissional %></td>
-        <td><%= link_to 'Show', avaliacao_curriculo %></td>
-        <td><%= link_to 'Edit', edit_avaliacao_curriculo_path(avaliacao_curriculo) %></td>
-        <td><%= link_to 'Destroy', avaliacao_curriculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= avaliacao_curriculo.inscricao.descricao_proc_seletivo %></td>
+
+        <% if can? :show, AvaliacaoCurriculo %>
+          <td><%= link_to 'Show', avaliacao_curriculo %></td>
+        <% end %>  
+        <% if can? :edit, AvaliacaoCurriculo %>
+          <td><%= link_to 'Edit', edit_avaliacao_curriculo_path(avaliacao_curriculo) %></td>
+        <% end %>
+        <% if can? :destroy, AvaliacaoCurriculo %>
+          <td><%= link_to 'Destroy', avaliacao_curriculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'Atribuir avaliador', new_avaliacao_curriculo_path %>
+<% if can? :new, AvaliacaoCurriculo %>
+  <%= link_to 'Atribuir avaliador', new_avaliacao_curriculo_path %>
+<% end %>
+
+

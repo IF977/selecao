@@ -1,9 +1,10 @@
-<fieldset>
-	<legend>Aribuir Avaliador a Inscrição</legend>  <div class="form-inputs">
+<%= simple_form_for(@avaliacao_curriculo) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
     <%= f.association :user, label_method: :nome_usuario, prompt: 'Selecione', collection: Role.find_by_name('Avaliador').users %>
     <%= f.association :inscricao, label_method: :nome_candidato, prompt: 'Selecione' %>
   </div>
-</fieldset>  
 
   <div class="form-actions">
     <%= f.button :submit, "Salvar", class: "my-button" %>

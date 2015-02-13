@@ -1,0 +1,20 @@
+<%= simple_form_for(@avaliacao_curriculo) do |f| %>
+  <%= f.error_notification %>
+<fieldset>
+	<legend>Avaciação do Currículo</legend>
+  <div class="form-inputs">
+    <strong>Avaliador: </strong><%= @avaliacao_curriculo.user.pessoa.nome %> <br/> <br/> 
+    <strong>Candidato: </strong><%= @avaliacao_curriculo.inscricao.user.pessoa.nome %> <br/> <br/> 
+  	<%= f.input :nota_historicos %>
+  	<%= f.input :nota_producao_cientifica %>
+  	<%= f.input :nota_experiencia_docente %>
+  	<%= f.input :nota_experiencia_pdi %>
+  	<%= f.input :nota_experiencia_profissional %>
+  </div>
+</fieldset>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", class: "my-button" %>
+    <%= link_to 'Voltar', "/avaliar_curriculos/" + current_user.id.to_s %>
+  </div>
+  <% end %>

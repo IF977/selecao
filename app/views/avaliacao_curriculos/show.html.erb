@@ -35,6 +35,10 @@
   <%= @avaliacao_curriculo.nota_experiencia_profissional %>
 </p>
 
-
-<%= link_to 'Edit', edit_avaliacao_curriculo_path(@avaliacao_curriculo) %> |
-<%= link_to 'Back', avaliacao_curriculos_path %>
+<% if current_user.has_role? 'Admin' %>
+  <%= link_to 'Alterar', edit_avaliacao_curriculo_path(@avaliacao_curriculo) %> |
+  <%= link_to 'Voltar', avaliacao_curriculos_path %>
+<% elsif current_user.has_role? 'Avaliador' %>
+  <%= link_to 'Avaliar', edit_avaliacao_curriculo_path(@avaliacao_curriculo) %> |
+  <%= link_to 'Voltar', "/avaliar_curriculos/" + current_user.id.to_s %>
+<% end %>

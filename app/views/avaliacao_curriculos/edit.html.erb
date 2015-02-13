@@ -1,3 +1,7 @@
-<h1>Alteranado :: Avaliação Currículo</h1>
+<% if current_user.has_role? 'Admin' %>
+	  <h1>Atribuindo :: Avaliador</h1>
+  <% elsif current_user.has_role? 'Avaliador' %>
+  	  <h1>Avaliando Currículo</h1>
+  <% end %>
 
 <%= render 'form' %>
