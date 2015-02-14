@@ -1,0 +1,31 @@
+<fieldset>
+	<legend>Dados do Processo Seletivo</legend>
+	
+	<p>
+	  <strong>Descrição:</strong>
+	  <%= @processo_seletivo.descricao %>
+	</p>
+
+	<p>
+	  <strong>Edital:</strong>
+	  <%= @edital.descricao %>
+	</p>
+
+	<p>
+	  <strong>Linhas de pesquisa:</strong>
+	  <%= @processo_seletivo.desc_linhas_pesquisa %>
+	</p>
+</fieldset>
+<br/>
+<br/>
+<p>
+	<strong>
+		A finalização do processo seletivo irá calcular as notas finais dos candidatos.
+		Após isso não será mais possível realizar operações neste processo seletivo.
+		Realmente deseja finalizar o processo seletivo?
+	</strong>
+</p>
+<% if current_user.has_role? 'Admin' %>
+	<%= link_to 'Finalizar', "/resultado/final/" + @processo_seletivo.id.to_s %> |
+<% end %>
+<%= link_to 'Voltar', "/processo_seletivos/processo_seletivos_abertos" %>

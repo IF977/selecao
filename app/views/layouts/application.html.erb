@@ -37,6 +37,9 @@
                     <% if can? :manage, ProcessoSeletivo%>
                       <li><%= link_to 'Processo Seletivo', processo_seletivos_path %></li> 
                     <% end %>
+                    <% if can? :manage, ResultadoFinal%>
+                      <li><%= link_to 'Selções Abertas', "/processo_seletivos/processo_seletivos_abertos" %></li> 
+                    <% end %>
                   </ul> 
               </li> 
             <% end %>
@@ -44,11 +47,17 @@
               <li class="has-dropdown"> <a href="#">Avaliar Inscrições</a>
                 <ul class="dropdown"> 
                   <li><%= link_to 'Avaliar Currículos', "/avaliar_curriculos/" + current_user.id.to_s %></li> 
+                  <li><%= link_to 'Avaliar Pré-Projetos', "/avaliar_pre_projetos/" + current_user.id.to_s %></li> 
                 </ul>
               </li>
             <% end %>
             <% if current_user.has_role? 'Admin' %>
-              <li><%= link_to 'Atribuir Avaliador', avaliacao_curriculos_path %></li> 
+              <li class="has-dropdown"> <a href="#">Avaliadores</a>
+                <ul class="dropdown"> 
+                  <li><%= link_to 'Atribuir Avaliador de Currículo', avaliacao_curriculos_path %></li> 
+                  <li><%= link_to 'Atribuir Avaliador de Pré-Projeto', avaliacao_pre_projetos_path %></li> 
+                </ul>
+              </li>
             <% end %>  
             <% if can? :manage, Inscricao%>
               <li><%= link_to 'Inscricao', inscricaos_path %></li> 

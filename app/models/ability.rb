@@ -7,7 +7,9 @@ class Ability
         if user != nil
             can :manage, Cidade
             if user.has_role? :Admin
+                can :manage, ResultadoFinal
                 can [:new, :create, :index, :show], AvaliacaoCurriculo
+                can [:new, :create, :index, :show], AvaliacaoPreProjeto
                 can :manage, Edital
                 can :manage, LinhaPesquisa
                 can :manage, ProcessoSeletivo
@@ -22,6 +24,7 @@ class Ability
             elsif user.has_role? :Avaliador
                 #All the "Avaliador" stuff go here
                 can [:edit, :show, :update, :avaliar_curriculos], AvaliacaoCurriculo
+                can [:edit, :show, :update, :avaliar_pre_projetos], AvaliacaoPreProjeto
             else
                 #Aqui vão todas as ações permitidas a usuários logados, mas sem papel, ou seja, candidatos
                 #can :manage, Inscricao, :user_id => user.id
@@ -31,10 +34,12 @@ class Ability
             can [:edit, :read, :update, :index], Pessoa do |pessoa|  
                 pessoa.try(:user) == user  
             end 
-            can :manage, Inscricao do |inscricao|  
-                inscricao.try(:user) == user  
-            end 
+            #can :manage, Inscricao do |inscricao|  
+             #   inscricao.try(:user) == user  
+            #end 
+            can :manage, Inscricao
             can :manage, ProducaoCientifica
+            can :processo_seletivos_abertos, ProcessoSeletivo
         end
     end
     

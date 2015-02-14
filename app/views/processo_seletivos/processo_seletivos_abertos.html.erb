@@ -1,0 +1,34 @@
+<h1>Listando :: Processos Seletivos Abertos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Descricao</th>
+      <th>Edital</th>
+      <th>Linhas de Pesquisa</th>
+      <% if current_user.has_role? 'Admin' %>
+        <th colspan="3">Ações</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @processo_seletivos_abertos.each do |processo_seletivos_aberto| %>
+      <tr>
+        <td><%= processo_seletivos_aberto.descricao %></td>
+        <td><%= processo_seletivos_aberto.edital.descricao %></td>
+        <td><%= processo_seletivos_aberto.desc_linhas_pesquisa %></td>
+        <% if current_user.has_role? 'Admin' %>
+          <td>
+            <%= link_to 'Finalizar', "/processo_seletivos/finalizar_processo_seletivo/" + processo_seletivos_aberto.id.to_s %>
+          </td>
+        <% end %>
+        <% if current_user.roles == nil %>
+          <%= link_to 'Candidatar-se', "/processo_seletivos/finalizar_processo_seletivo/" + processo_seletivos_aberto.id.to_s %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

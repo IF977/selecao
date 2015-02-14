@@ -1,0 +1,13 @@
+<%= simple_form_for(@avaliacao_pre_projeto) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user, label: 'Avaliador', label_method: :nome_usuario, prompt: 'Selecione', collection: Role.find_by_name('Avaliador').users %>
+    <%= f.association :inscricao, label: 'Candidatura', label_method: :nome_candidato, prompt: 'Selecione', collection: Inscricao.where('id not in (select inscricao_id from avaliacao_pre_projetos)') %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Salvar' %>
+    <%= link_to 'Voltar', "/avaliar_pre_projetos/" + current_user.id.to_s %>
+  </div>
+<% end %>

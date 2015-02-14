@@ -2,8 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user, label_method: :nome_usuario, prompt: 'Selecione', collection: Role.find_by_name('Avaliador').users %>
-    <%= f.association :inscricao, label_method: :nome_candidato, prompt: 'Selecione' %>
+    <%= f.association :user, label: 'Avaliador', label_method: :nome_usuario, prompt: 'Selecione', collection: Role.find_by_name('Avaliador').users %>
+    <%= f.association :inscricao, label: 'Candidatura', label_method: :nome_candidato, prompt: 'Selecione' %>
   </div>
 
   <div class="form-actions">

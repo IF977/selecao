@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  inscricao_id: 
+  aderencia: 1.5
+  alinhamento: 1.5
+  contextualizacao: 1.5
+  redacao: 1.5
+  autonomia: 1.5
+
+two:
+  user_id: 
+  inscricao_id: 
+  aderencia: 1.5
+  alinhamento: 1.5
+  contextualizacao: 1.5
+  redacao: 1.5
+  autonomia: 1.5

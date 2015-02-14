@@ -1,0 +1,12 @@
+<%= simple_form_for(@resultado_final) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :inscricao %>
+    <%= f.input :nota_final %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

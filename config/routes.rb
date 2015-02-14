@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :resultado_finals
+
+  get "/resultado/final/:rf", :to => "resultado_finals#finalizar"
+
+  resources :avaliacao_pre_projetos
+
+  get "/avaliar_pre_projetos/:av", :to => "avaliacao_pre_projetos#avaliar_pre_projetos"
+
   resources :avaliacao_curriculos
 
   get "/avaliar_curriculos/:av", :to => "avaliacao_curriculos#avaliar_curriculos"
@@ -11,8 +19,12 @@ Rails.application.routes.draw do
   resources :pessoas
 
   resources :processo_seletivos
+  
+  get "/processo_seletivos/processo_seletivos_abertos", :to => "processo_seletivos#processo_seletivos_abertos"
 
-  resources :calendarios
+  get "/processo_seletivos/finalizar_processo_seletivo/:ps", :to => "processo_seletivos#finalizar_processo_seletivo"
+
+  #resources :calendarios
 
   resources :pessoas
   

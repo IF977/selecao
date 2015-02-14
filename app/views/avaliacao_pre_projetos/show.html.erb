@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Candidatura:</strong>
+  <%= @avaliacao_pre_projeto.inscricao.nome_candidato %>
+</p>
+
+<p>
+  <strong>Avaliador:</strong>
+  <%= @avaliacao_pre_projeto.user.nome_usuario %>
+</p>
+
+<p>
+  <strong>Aderencia:</strong>
+  <%= @avaliacao_pre_projeto.aderencia %>
+</p>
+
+<p>
+  <strong>Alinhamento:</strong>
+  <%= @avaliacao_pre_projeto.alinhamento %>
+</p>
+
+<p>
+  <strong>Contextualizacao:</strong>
+  <%= @avaliacao_pre_projeto.contextualizacao %>
+</p>
+
+<p>
+  <strong>Redacao:</strong>
+  <%= @avaliacao_pre_projeto.redacao %>
+</p>
+
+<p>
+  <strong>Autonomia:</strong>
+  <%= @avaliacao_pre_projeto.autonomia %>
+</p>
+
+<% if current_user.has_role? 'Admin' %>
+  <%= link_to 'Alterar', edit_avaliacao_pre_projeto_path(@avaliacao_pre_projeto) %> |
+  <%= link_to 'Voltar', avaliacao_pre_projetos_path %>
+<% elsif current_user.has_role? 'Avaliador' %>
+  <%= link_to 'Avaliar', edit_avaliacao_pre_projeto_path(@avaliacao_pre_projeto) %> |
+  <%= link_to 'Voltar', "/avaliar_pre_projetos/" + current_user.id.to_s %>
+<% end %>

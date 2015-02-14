@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listando :: Avaliação de Pré-Projetos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Avaliador</th>
+      <th>Candidatura</th>
+      <th>Aderencia</th>
+      <th>Alinhamento</th>
+      <th>Contextualizacao</th>
+      <th>Redacao</th>
+      <th>Autonomia</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @avaliacao_pre_projetos.each do |avaliacao_pre_projeto| %>
+      <tr>
+        <td><%= avaliacao_pre_projeto.user.nome_usuario %></td>
+        <td><%= avaliacao_pre_projeto.inscricao.nome_candidato %></td>
+        <td><%= avaliacao_pre_projeto.aderencia %></td>
+        <td><%= avaliacao_pre_projeto.alinhamento %></td>
+        <td><%= avaliacao_pre_projeto.contextualizacao %></td>
+        <td><%= avaliacao_pre_projeto.redacao %></td>
+        <td><%= avaliacao_pre_projeto.autonomia %></td>
+        <td><%= link_to 'Ver', avaliacao_pre_projeto %></td>
+        <td><%= link_to 'Avaliar', edit_avaliacao_pre_projeto_path(avaliacao_pre_projeto) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

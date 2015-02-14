@@ -1,0 +1,7 @@
+<% if current_user.has_role? 'Admin' %>
+	  <h1>Atribuindo :: Avaliador a Pré-projeto</h1>
+  <% elsif current_user.has_role? 'Avaliador' %>
+  	  <h1>Avaliando Pré-Projeto</h1>
+  <% end %>
+
+<%= render 'form' %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211145116) do
+ActiveRecord::Schema.define(version: 20150213180510) do
 
   create_table "avaliacao_curriculos", force: :cascade do |t|
     t.float    "nota_historicos"
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 20150211145116) do
 
   add_index "avaliacao_curriculos", ["inscricao_id"], name: "index_avaliacao_curriculos_on_inscricao_id"
   add_index "avaliacao_curriculos", ["user_id"], name: "index_avaliacao_curriculos_on_user_id"
+
+  create_table "avaliacao_pre_projetos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "inscricao_id"
+    t.float    "aderencia"
+    t.float    "alinhamento"
+    t.float    "contextualizacao"
+    t.float    "redacao"
+    t.float    "autonomia"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "avaliacao_pre_projetos", ["inscricao_id"], name: "index_avaliacao_pre_projetos_on_inscricao_id"
+  add_index "avaliacao_pre_projetos", ["user_id"], name: "index_avaliacao_pre_projetos_on_user_id"
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
@@ -179,6 +194,7 @@ ActiveRecord::Schema.define(version: 20150211145116) do
     t.integer  "edital_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "finalizado"
   end
 
   add_index "processo_seletivos", ["edital_id"], name: "index_processo_seletivos_on_edital_id"
@@ -202,6 +218,15 @@ ActiveRecord::Schema.define(version: 20150211145116) do
   end
 
   add_index "producao_cientificas", ["inscricao_id"], name: "index_producao_cientificas_on_inscricao_id"
+
+  create_table "resultado_finals", force: :cascade do |t|
+    t.integer  "inscricao_id"
+    t.float    "nota_final"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "resultado_finals", ["inscricao_id"], name: "index_resultado_finals_on_inscricao_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

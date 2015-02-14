@@ -53,6 +53,23 @@ class ProcessoSeletivosController < ApplicationController
     @processo_seletivo.processo_seletivos_linha_pesquisas
   end
 
+  def processo_seletivos_abertos
+    @processo_seletivos_abertos = []
+    ProcessoSeletivo.where('id not in (select ps.id 
+      from resultado_finals rf join inscricaos i on rf.inscricao_id = i.id 
+      join processo_seletivos_linha_pesquisas pslp on i.processo_seletivos_linha_pesquisa_id = pslp.id 
+      join processo_seletivos ps on pslp.processo_seletivo_id = ps.id)').find_each do |processo|
+      @processo_seletivos_abertos.push(processo)
+    end
+    respond_with @processo_seletivos_abertos
+  end
+
+  def finalizar_processo_seletivo
+    @processo_seletivo = ProcessoSeletivo.find(params[:ps])
+    @edital = Edital.find(@processo_seletivo.edital_id)
+    respond_with(@processo_seletivo)
+  end
+
   private
     def set_processo_seletivo
       @processo_seletivo = ProcessoSeletivo.find(params[:id])

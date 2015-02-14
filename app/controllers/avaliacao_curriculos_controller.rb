@@ -37,13 +37,14 @@ class AvaliacaoCurriculosController < ApplicationController
 
   #O update soh serah feito pelos avaliadores. Neste ponto, verificam-se os itens obrigatorios
   def update
-    erros = validar_update(@avaliacao_curriculo)
-    if erros == ''
+    #TODO - verificar e ativar esta validação
+    # erros = validar_update(@avaliacao_curriculo)
+    # if erros == ''
       @avaliacao_curriculo.update(avaliacao_curriculo_params)
       respond_with(@avaliacao_curriculo)
-    else
-      redirect_to edit_avaliacao_curriculo_path, alert: erros
-    end
+    # else
+    #   redirect_to edit_avaliacao_curriculo_path, alert: erros
+    # end
   end
 
   def validar_create(av)

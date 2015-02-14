@@ -1,0 +1,18 @@
+<%= simple_form_for(@avaliacao_pre_projeto) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <strong>Avaliador: </strong><%= @avaliacao_pre_projeto.user.pessoa.nome %> <br/> <br/> 
+    <strong>Candidato: </strong><%= @avaliacao_pre_projeto.inscricao.user.pessoa.nome %> <br/> <br/> 
+    <%= f.input :aderencia %>
+    <%= f.input :alinhamento %>
+    <%= f.input :contextualizacao %>
+    <%= f.input :redacao %>
+    <%= f.input :autonomia %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Salvar' %>
+    <%= link_to 'Voltar', "/avaliar_pre_projetos/" + current_user.id.to_s %>
+  </div>
+<% end %>

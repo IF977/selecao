@@ -17,13 +17,13 @@
         <td><%= avaliacao_curriculo.inscricao.descricao_proc_seletivo %></td>
 
         <% if can? :show, AvaliacaoCurriculo %>
-          <td><%= link_to 'Show', avaliacao_curriculo %></td>
+          <td><%= link_to 'Ver', avaliacao_curriculo %></td>
         <% end %>  
         <% if can? :edit, AvaliacaoCurriculo %>
-          <td><%= link_to 'Edit', edit_avaliacao_curriculo_path(avaliacao_curriculo) %></td>
+          <td><%= link_to 'Alterar', edit_avaliacao_curriculo_path(avaliacao_curriculo) %></td>
         <% end %>
         <% if can? :destroy, AvaliacaoCurriculo %>
-          <td><%= link_to 'Destroy', avaliacao_curriculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Remover', avaliacao_curriculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

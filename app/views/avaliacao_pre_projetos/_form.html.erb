@@ -1,9 +1,5 @@
 <% if current_user.has_role? 'Admin' %>
-  
-	<%= render "atribuir_avaliador_fields" %>
-  
+  <%= render "atribuir_avaliador_fields" %>
 <% elsif current_user.has_role? 'Avaliador' %>
-	  
-	<%= render "avaliacao_fields" %>
-
+  <%= render "avaliacao_fields" %>
 <% end %>

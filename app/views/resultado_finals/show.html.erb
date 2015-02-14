@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Inscricao:</strong>
+  <%= @resultado_final.inscricao %>
+</p>
+
+<p>
+  <strong>Nota final:</strong>
+  <%= @resultado_final.nota_final %>
+</p>
+
+<%= link_to 'Edit', edit_resultado_final_path(@resultado_final) %> |
+<%= link_to 'Back', resultado_finals_path %>

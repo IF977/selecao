@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listando :: Resultado Final</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Inscricao</th>
+      <th>Nota final</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resultado_finals.each do |resultado_final| %>
+      <tr>
+        <td><%= resultado_final.inscricao.nome_candidato %></td>
+        <td><%= resultado_final.nota_final %></td>
+        <td><%= link_to 'Show', resultado_final %></td>
+        <td><%= link_to 'Edit', edit_resultado_final_path(resultado_final) %></td>
+        <td><%= link_to 'Destroy', resultado_final, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resultado final', new_resultado_final_path %>
