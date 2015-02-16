@@ -106,7 +106,7 @@ class ResultadoFinalsController < ApplicationController
       resultados_finais.each do |rf|
         rf.save!
       end
-      redirect_to "/resultado_final/" + @processo_seletivo.id.to_s, :notice => "Processo seletivo finalizado com sucesso."
+      redirect_to "/exibir_classificacao/" + @processo_seletivo.id.to_s, :notice => "Processo seletivo finalizado com sucesso."
     else
       redirect_to "/processo_seletivos_abertos", :alert => "Não foi possível finalizar o Processo seletivo.
       Foram encontradas avaliações conflitantes para os seguintes candidatos: " + nomes_conflitos
@@ -148,15 +148,15 @@ class ResultadoFinalsController < ApplicationController
   end
 
   def exibir_classificacao
-    @resultados_finais = []
+    @exibir_classificacao = []
+    #ResultadoFinal.search(params[:ps])
     #ps = ProcessoSeletivo.find(params[:ps])
-    ResultadoFinal.where('ps.id in (select ps.id 
-      from inscricaos i on rf.inscricao_id = i.id 
-      join processo_seletivos_linha_pesquisas pslp on i.processo_seletivos_linha_pesquisa_id = pslp.id 
-      join processo_seletivos ps on pslp.processo_seletivo_id = #{params[:ps]})').find_each do |rf|
-      @resultados_finais.push(rf)
+    ResultadoFinal.where('pslp.processo_seletivo_id in (select ps.id 
+      from inscricaos i join processo_seletivos_linha_pesquisas pslp on i.processo_seletivos_linha_pesquisa_id = pslp.id 
+      where pslp.processo_seletivo_id = ' + params[:ps] + ')').find_each do |rf|
+      @exibir_classificacao.push(rf)
     end
-    respond_with @resultados_finais
+    respond_with @exibir_classificacao
   end
 
   private

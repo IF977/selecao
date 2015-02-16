@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "/resultado_final/:rf", :to => "resultado_finals#finalizar"
 
-  get "/resultado_final/:ps", :to => "resultado_finals#exibir_classificacao"
+  get "/exibir_classificacao/:ps", :to => "resultado_finals#exibir_classificacao"
 
   resources :avaliacao_pre_projetos
 
