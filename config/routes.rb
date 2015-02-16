@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resources :resultado_finals
 
-  get "/resultado/final/:rf", :to => "resultado_finals#finalizar"
+  get "/resultado_final/:rf", :to => "resultado_finals#finalizar"
+
+  get "/resultado_final/:ps", :to => "resultado_finals#exibir_classificacao"
 
   resources :avaliacao_pre_projetos
 
@@ -20,9 +22,9 @@ Rails.application.routes.draw do
 
   resources :processo_seletivos
   
-  get "/processo_seletivos/processo_seletivos_abertos", :to => "processo_seletivos#processo_seletivos_abertos"
+  get "/processo_seletivos_abertos", :to => "processo_seletivos#processo_seletivos_abertos"
 
-  get "/processo_seletivos/finalizar_processo_seletivo/:ps", :to => "processo_seletivos#finalizar_processo_seletivo"
+  get "/finalizar_processo_seletivo/:ps", :to => "processo_seletivos#finalizar_processo_seletivo"
 
   #resources :calendarios
 

@@ -26,6 +26,6 @@
 	</strong>
 </p>
 <% if current_user.has_role? 'Admin' %>
-	<%= link_to 'Finalizar', "/resultado/final/" + @processo_seletivo.id.to_s %> |
+	<%= link_to 'Finalizar', "/resultado_final/" + @processo_seletivo.id.to_s %> |
 <% end %>
-<%= link_to 'Voltar', "/processo_seletivos/processo_seletivos_abertos" %>
+<%= link_to 'Voltar', "/processo_seletivos_abertos" %>

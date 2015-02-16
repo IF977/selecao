@@ -20,11 +20,11 @@
         <td><%= processo_seletivos_aberto.desc_linhas_pesquisa %></td>
         <% if current_user.has_role? 'Admin' %>
           <td>
-            <%= link_to 'Finalizar', "/processo_seletivos/finalizar_processo_seletivo/" + processo_seletivos_aberto.id.to_s %>
+            <%= link_to 'Finalizar', "/finalizar_processo_seletivo/" + processo_seletivos_aberto.id.to_s %>
           </td>
         <% end %>
         <% if current_user.roles == nil %>
-          <%= link_to 'Candidatar-se', "/processo_seletivos/finalizar_processo_seletivo/" + processo_seletivos_aberto.id.to_s %>
+          <%= link_to 'Candidatar-se', "/finalizar_processo_seletivo/" + processo_seletivos_aberto.id.to_s %>
         <% end %>
       </tr>
     <% end %>

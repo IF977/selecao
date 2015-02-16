@@ -40,6 +40,123 @@ class ResultadoFinalsController < ApplicationController
 
   def finalizar
     @processo_seletivo = ProcessoSeletivo.find(params[:rf])
+    nomes_conflitos = ''
+    @processo_seletivo.processo_seletivos_linha_pesquisas.each do |pslp|
+      pslp.inscricaos.each do |i|
+        avaliacao_pre_projeto = AvaliacaoPreProjeto.find_by 'inscricao_id ', i.id
+        avaliacoes_curriculo = []
+        AvaliacaoCurriculo.where(['inscricao_id = ?', i.id]).find_each do |avaliacao|
+          avaliacoes_curriculo.push(avaliacao)
+        end
+        conflitos = verificar_conflitos(avaliacoes_curriculo)
+        if conflitos != ''
+          nomes_conflitos = nomes_conflitos + conflitos
+        end
+      end #fim each inscricao
+    end #fim each processo_seletivo_linha_pesquisa
+
+    if nomes_conflitos == ''
+      resultados_finais = []
+      @processo_seletivo = ProcessoSeletivo.find(params[:rf])
+      nomes_conflitos = ''
+      @processo_seletivo.processo_seletivos_linha_pesquisas.each do |pslp|
+        pslp.inscricaos.each do |i|
+          avaliacao_pre_projeto = AvaliacaoPreProjeto.find_by 'inscricao_id ', i.id
+          avaliacoes_curriculo = []
+          AvaliacaoCurriculo.where(['inscricao_id = ?', i.id]).find_each do |avaliacao|
+            avaliacoes_curriculo.push(avaliacao)
+          end
+
+          #calcular nota final
+          resultado_final = ResultadoFinal.new
+          resultado_final.inscricao_id = i.id
+
+          nota_pre_projeto = (avaliacao_pre_projeto.aderencia * 0.2) + 
+              (avaliacao_pre_projeto.alinhamento * 0.3) +
+              (avaliacao_pre_projeto.contextualizacao * 0.1) +
+              (avaliacao_pre_projeto.redacao * 0.1) +
+              (avaliacao_pre_projeto.consistencia * 0.1) +
+              (avaliacao_pre_projeto.autonomia * 0.2) 
+          if nota_pre_projeto < 8
+            resultado_final.aprovado = false
+          end
+          ac = avaliacoes_curriculo[0]
+          if(@processo_seletivo.descricao == 'Mestrado')
+            nota_curriculo = ((ac.nota_historicos * 5.5) +
+                (ac.nota_producao_cientifica * 2) +
+                (ac.nota_experiencia_docente) +
+                (ac.nota_experiencia_pdi) + 
+                (ac.nota_experiencia_profissional * 0.5))/10
+            if nota_curriculo < 3.5
+              resultado_final.aprovado = false
+            else
+              resultado_final.aprovado = true
+            end
+          else  #doutorado
+            resultado_final.aprovado = true
+            nota_curriculo = ((ac.nota_historicos * 5.5) +
+                (ac.nota_producao_cientifica * 3) +
+                (ac.nota_experiencia_docente * 0.5) +
+                (ac.nota_experiencia_pdi * 0.5) + 
+                (ac.nota_experiencia_profissional * 0.5))/10
+          end
+          resultados_finais.push(resultado_final)
+        end
+      end
+      resultados_finais.each do |rf|
+        rf.save!
+      end
+      redirect_to "/resultado_final/" + @processo_seletivo.id.to_s, :notice => "Processo seletivo finalizado com sucesso."
+    else
+      redirect_to "/processo_seletivos_abertos", :alert => "Não foi possível finalizar o Processo seletivo.
+      Foram encontradas avaliações conflitantes para os seguintes candidatos: " + nomes_conflitos
+    end
+  end
+
+  def verificar_conflitos(avaliacoes_curriculo)
+    nomes_conflitos = ''
+    avaliacoes_curriculo.each do |ac|
+      #verifica se há conflito de notas com as outras avaliações
+      avaliacoes_curriculo.each do |ac2|
+        if ac.inscricao_id == ac2.inscricao_id
+          if ac.nota_historicos != ac2.nota_historicos ||
+                ac.nota_producao_cientifica != ac2.nota_producao_cientifica ||
+                ac.nota_experiencia_docente != ac2.nota_experiencia_docente ||
+                ac.nota_experiencia_pdi != ac2.nota_experiencia_pdi
+                ac.nota_experiencia_profissional != ac2.nota_experiencia_profissional
+            nomes_conflitos = nomes_conflitos + ac.inscricao.user.pessoa.nome + ', '
+          end #fim if    
+        end # if inscricao_id
+      end #fim each avaliacao_curriculo2
+    end #fim each avaliacao_curriculo
+    if nomes_conflitos != ''
+      nomes_conflitos = nomes_conflitos.split(",")
+      nc = []
+      nomes_conflitos.each do |conflito|
+        #remover repetidos  
+        if ! nc.include? conflito
+          nc.push(conflito)
+        end
+      end
+      nomes_conflitos = ''
+      nc.each do |n|
+        nomes_conflitos = nomes_conflitos + n + ", "
+      end
+      nomes_conflitos = nomes_conflitos[0, nomes_conflitos.length - 2]
+    end
+    return nomes_conflitos
+  end
+
+  def exibir_classificacao
+    @resultados_finais = []
+    #ps = ProcessoSeletivo.find(params[:ps])
+    ResultadoFinal.where('ps.id in (select ps.id 
+      from inscricaos i on rf.inscricao_id = i.id 
+      join processo_seletivos_linha_pesquisas pslp on i.processo_seletivos_linha_pesquisa_id = pslp.id 
+      join processo_seletivos ps on pslp.processo_seletivo_id = #{params[:ps]})').find_each do |rf|
+      @resultados_finais.push(rf)
+    end
+    respond_with @resultados_finais
   end
 
   private

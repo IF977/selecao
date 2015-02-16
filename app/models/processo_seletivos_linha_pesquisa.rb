@@ -1,7 +1,7 @@
 class ProcessoSeletivosLinhaPesquisa < ActiveRecord::Base
   	belongs_to :processo_seletivo
 	belongs_to :linha_pesquisa
-	#has_many :inscricaos
+	has_many :inscricaos
 
 	validates_presence_of :vagas
 

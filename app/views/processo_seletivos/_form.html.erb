@@ -4,7 +4,7 @@
   <div class="form-inputs">
     <fieldset>
       <legend>Dados Processo Seletivo</legend>
-      <%= f.input :descricao, label: "Descrição" %>
+      <%= f.input :descricao, label: "Descrição", collection: ['Mestrado', 'Doutorado'], prompt: "Selecione..." %>
       <%= f.association :edital, label_method: :descricao, prompt: "Selecione" %>
       <fieldset>
         <legend>Linhas de Pesquisa</legend>

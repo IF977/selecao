@@ -20,6 +20,7 @@ class AvaliacaoPreProjetosController < ApplicationController
   end
 
   def edit
+    @avaliacao_pre_projeto = AvaliacaoPreProjeto.find(params[:id])
   end
 
   def create
@@ -96,7 +97,7 @@ class AvaliacaoPreProjetosController < ApplicationController
     end
 
     def avaliacao_pre_projeto_params
-      params.require(:avaliacao_pre_projeto).permit(:user_id, :inscricao_id, :aderencia, :alinhamento, :contextualizacao, :redacao, :autonomia)
+      params.require(:avaliacao_pre_projeto).permit(:user_id, :inscricao_id, :aderencia, :alinhamento, :contextualizacao, :redacao, :autonomia, :consistencia)
     end
 
     def load_avaliacao_preprojeto

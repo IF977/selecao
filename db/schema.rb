@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213180510) do
+ActiveRecord::Schema.define(version: 20150213180650) do
 
   create_table "avaliacao_curriculos", force: :cascade do |t|
     t.float    "nota_historicos"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150213180510) do
     t.float    "autonomia"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.float    "consistencia"
   end
 
   add_index "avaliacao_pre_projetos", ["inscricao_id"], name: "index_avaliacao_pre_projetos_on_inscricao_id"
@@ -224,6 +225,7 @@ ActiveRecord::Schema.define(version: 20150213180510) do
     t.float    "nota_final"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "aprovado"
   end
 
   add_index "resultado_finals", ["inscricao_id"], name: "index_resultado_finals_on_inscricao_id"

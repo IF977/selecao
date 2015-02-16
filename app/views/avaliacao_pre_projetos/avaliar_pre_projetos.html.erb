@@ -7,10 +7,11 @@
     <tr>
       <th>Avaliador</th>
       <th>Candidatura</th>
-      <th>Aderencia</th>
+      <th>Aderência</th>
       <th>Alinhamento</th>
-      <th>Contextualizacao</th>
-      <th>Redacao</th>
+      <th>Contextualização</th>
+      <th>Redação</th>
+      <th>Consistência</th>
       <th>Autonomia</th>
       <th colspan="3">Ações</th>
     </tr>
@@ -25,6 +26,7 @@
         <td><%= avaliacao_pre_projeto.alinhamento %></td>
         <td><%= avaliacao_pre_projeto.contextualizacao %></td>
         <td><%= avaliacao_pre_projeto.redacao %></td>
+        <td><%= avaliacao_pre_projeto.consistencia %></td>
         <td><%= avaliacao_pre_projeto.autonomia %></td>
         <td><%= link_to 'Ver', avaliacao_pre_projeto %></td>
         <td><%= link_to 'Avaliar', edit_avaliacao_pre_projeto_path(avaliacao_pre_projeto) %></td>
