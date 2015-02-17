@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <strong>Avaliador: </strong><%= @avaliacao_pre_projeto.user.pessoa.nome %> <br/> <br/> 
+    <strong>Avaliador: </strong><%= @avaliacao_pre_projeto.user.email %> <br/> <br/> 
     <strong>Candidato: </strong><%= @avaliacao_pre_projeto.inscricao.user.pessoa.nome %> <br/> <br/> 
     <%= f.input :aderencia %>
     <%= f.input :alinhamento %>

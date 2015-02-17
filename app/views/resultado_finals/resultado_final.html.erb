@@ -7,15 +7,17 @@
     <tr>
       <th>Inscricao</th>
       <th>Nota final</th>
+      <th>Aprovado</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @exibir_classificacao.each do |resultado_final| %>
+    <% @resultados_finais.each do |resultado_final| %>
       <tr>
         <td><%= resultado_final.inscricao.nome_candidato %></td>
         <td><%= resultado_final.nota_final %></td>
+        <td><%= resultado_final.aprovado == true ? 'Sim' : 'Não' %></td>
         <td><%= link_to 'Show', resultado_final %></td>
       </tr>
     <% end %>

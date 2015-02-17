@@ -15,8 +15,11 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		user = User.find(params[:id])
-		if user.update(user_params)
+		if user_params['role_ids'].include? '1' 
+			if user_params['role_ids'].include? '2'
+				redirect_to users_path, :alert => "Um usuário não pode ser admin e avaliador ao mesmo tempo."
+			end
+		elsif @user.update(user_params)
 			redirect_to users_path, :notice => "Usuário alterado."
 		else
 			redirect_to users_path, :alert => "Não foi possível alterar o usuário."

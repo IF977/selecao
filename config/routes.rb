@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :resultado_finals
 
-  get "/resultado_final/:rf", :to => "resultado_finals#finalizar"
+  get "/resultado_final/:ps", :to => "resultado_finals#finalizar"
 
   get "/exibir_classificacao/:ps", :to => "resultado_finals#exibir_classificacao"
 

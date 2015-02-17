@@ -18,7 +18,7 @@
     <% @avaliacao_curriculos.each do |avaliacao_curriculo| %>
       <tr>
         <td><%= avaliacao_curriculo.inscricao.nome_candidato %></td>
-        <td><%= avaliacao_curriculo.user.nome_usuario %></td>
+        <td><%= avaliacao_curriculo.user.email %></td>
         <td><%= avaliacao_curriculo.nota_historicos %></td>
         <td><%= avaliacao_curriculo.nota_producao_cientifica %></td>
         <td><%= avaliacao_curriculo.nota_experiencia_docente %></td>

@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <strong>Avaliador: </strong><%= @avaliacao_curriculo.user.pessoa.nome %> <br/> <br/> 
+    <strong>Avaliador: </strong><%= @avaliacao_curriculo.user.email %> <br/> <br/> 
     <strong>Candidato: </strong><%= @avaliacao_curriculo.inscricao.user.pessoa.nome %> <br/> <br/> 
     <%= f.input :nota_historicos %>
     <%= f.input :nota_producao_cientifica %>

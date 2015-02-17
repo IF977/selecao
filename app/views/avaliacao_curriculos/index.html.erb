@@ -4,8 +4,8 @@
 <table>
   <thead>
     <tr>
-      <th>Candidato</th>
       <th>Avaliador</th>
+      <th>Candidatura</th>
       <th>Processo Seletivo</th>
       <th colspan="3"></th>
     </tr>
@@ -14,8 +14,8 @@
   <tbody>
     <% @avaliacao_curriculos.each do |avaliacao_curriculo| %>
       <tr>
+        <td><%= avaliacao_curriculo.user.email %></td>
         <td><%= avaliacao_curriculo.inscricao.nome_candidato %></td>
-        <td><%= avaliacao_curriculo.user.nome_usuario %></td>
         <td><%= avaliacao_curriculo.inscricao.descricao_proc_seletivo %></td>
 
         <% if can? :show, AvaliacaoCurriculo %>
