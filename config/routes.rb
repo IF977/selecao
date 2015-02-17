@@ -26,8 +26,6 @@ Rails.application.routes.draw do
 
   get "/finalizar_processo_seletivo/:ps", :to => "processo_seletivos#finalizar_processo_seletivo"
 
-  #resources :calendarios
-
   resources :pessoas
   
   resources :editals

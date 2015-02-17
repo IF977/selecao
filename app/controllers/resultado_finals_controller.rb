@@ -39,9 +39,10 @@ class ResultadoFinalsController < ApplicationController
   end
 
   def finalizar
-    @processo_seletivo = ProcessoSeletivo.find(params[:ps])
+    processo_seletivo = ProcessoSeletivo.find(params[:ps])
+    @resultados_finais = []
     nomes_conflitos = ''
-    @processo_seletivo.processo_seletivos_linha_pesquisas.each do |pslp|
+    processo_seletivo.processo_seletivos_linha_pesquisas.each do |pslp|
       pslp.inscricaos.each do |i|
         avaliacao_pre_projeto = AvaliacaoPreProjeto.find_by 'inscricao_id ', i.id
         avaliacoes_curriculo = []
@@ -56,10 +57,12 @@ class ResultadoFinalsController < ApplicationController
     end #fim each processo_seletivo_linha_pesquisa
 
     if nomes_conflitos == ''
-      resultados_finais = []
-      nomes_conflitos = ''
-      @processo_seletivo.processo_seletivos_linha_pesquisas.each do |pslp|
+      processo_seletivo.processo_seletivos_linha_pesquisas.each do |pslp|
         pslp.inscricaos.each do |i|
+          resultado_final = ResultadoFinal.new
+          resultado_final.inscricao_id = i.id
+          resultado_final.aprovado = true
+
           avaliacao_pre_projeto = AvaliacaoPreProjeto.find_by 'inscricao_id ', i.id
           avaliacoes_curriculo = []
           AvaliacaoCurriculo.where(['inscricao_id = ?', i.id]).find_each do |avaliacao|
@@ -67,9 +70,6 @@ class ResultadoFinalsController < ApplicationController
           end
 
           #calcular nota final
-          resultado_final = ResultadoFinal.new
-          resultado_final.inscricao_id = i.id
-
           nota_pre_projeto = (avaliacao_pre_projeto.aderencia * 0.2) + 
               (avaliacao_pre_projeto.alinhamento * 0.3) +
               (avaliacao_pre_projeto.contextualizacao * 0.1) +
@@ -77,7 +77,7 @@ class ResultadoFinalsController < ApplicationController
               (avaliacao_pre_projeto.consistencia * 0.1) +
               (avaliacao_pre_projeto.autonomia * 0.2) 
           ac = avaliacoes_curriculo[0]
-          if(@processo_seletivo.descricao == 'Mestrado')
+          if(processo_seletivo.descricao == 'Mestrado')
             nota_curriculo = ((ac.nota_historicos * 5.5) +
                 (ac.nota_producao_cientifica * 2) +
                 (ac.nota_experiencia_docente) +
@@ -85,8 +85,6 @@ class ResultadoFinalsController < ApplicationController
                 (ac.nota_experiencia_profissional * 0.5))/10
             if nota_curriculo < 3.5 || nota_pre_projeto < 8
               resultado_final.aprovado = false 
-            else
-              resultado_final.aprovado = true
             end
           else  #doutorado
             resultado_final.aprovado = true
@@ -98,18 +96,20 @@ class ResultadoFinalsController < ApplicationController
           end
           if nota_pre_projeto < 8
             resultado_final.aprovado = false 
-          else
-            resultado_final.aprovado = true
           end
+          
           resultado_final.nota_final = (nota_pre_projeto * 0.4) + (nota_curriculo * 0.6)
 
-          resultados_finais.push(resultado_final)
+          @resultados_finais.push(resultado_final)
         end
       end
-      resultados_finais.each do |rf|
-        rf.save!
+      @resultados_finais.each do |rf|
+        if rf.aprovado
+          rf.save!
+        end
       end
-      respond_with resultados_finais, :notice => "Processo seletivo finalizado com sucesso."
+      redirect_to :action => 'exibir_classificacao', :ps => processo_seletivo.id
+      #respond_with @resultados_finais, :notice => "Processo seletivo finalizado com sucesso."
     else
       redirect_to "/processo_seletivos_abertos", :alert => "Não foi possível finalizar o Processo seletivo.
       Foram encontradas avaliações conflitantes para os seguintes candidatos: " + nomes_conflitos
@@ -150,17 +150,12 @@ class ResultadoFinalsController < ApplicationController
     return nomes_conflitos
   end
 
-  # def exibir_classificacao
-  #   @exibir_classificacao = []
-  #   #ResultadoFinal.search(params[:ps])
-  #   #ps = ProcessoSeletivo.find(params[:ps])
-  #   ResultadoFinal.where('pslp.processo_seletivo_id in (select ps.id 
-  #     from inscricaos i join processo_seletivos_linha_pesquisas pslp on i.processo_seletivos_linha_pesquisa_id = pslp.id 
-  #     where pslp.processo_seletivo_id = ' + params[:ps] + ')').find_each do |rf|
-  #     @exibir_classificacao.push(rf)
-  #   end
-  #   respond_with @exibir_classificacao
-  # end
+  def exibir_classificacao
+    @resultados_finais = ResultadoFinal.joins(:inscricao => :processo_seletivos_linha_pesquisa)
+      .where(:processo_seletivos_linha_pesquisas => {:processo_seletivo_id => params[:ps]})
+      .order(nota_final: :desc).all
+    respond_with @resultados_finais
+  end
 
   private
     def set_resultado_final

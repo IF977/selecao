@@ -16,14 +16,10 @@
       <tr>
         <td><%= resultado_final.inscricao.nome_candidato %></td>
         <td><%= resultado_final.nota_final %></td>
-        <td><%= link_to 'Show', resultado_final %></td>
-        <td><%= link_to 'Edit', edit_resultado_final_path(resultado_final) %></td>
-        <td><%= link_to 'Destroy', resultado_final, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', resultado_final %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Resultado final', new_resultado_final_path %>
